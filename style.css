@@ -1,6 +1,61 @@
 body{
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
     background-color:black;
     color: white;
+}
+body::before,
+body::after{
+    position: fixed;
+    top: -10vh;
+    left: 0;
+    z-index: 0;
+    width: 14px;
+    height: 9px;
+    border-radius: 100% 0 100% 0;
+    background: rgba(200, 137, 55, 0.78);
+    box-shadow:
+        12vw 12vh rgba(200, 137, 55, 0.45),
+        28vw 4vh rgba(200, 137, 55, 0.65),
+        43vw 20vh rgba(200, 137, 55, 0.5),
+        61vw 8vh rgba(200, 137, 55, 0.7),
+        77vw 25vh rgba(200, 137, 55, 0.45),
+        92vw 3vh rgba(200, 137, 55, 0.65),
+        8vw 45vh rgba(200, 137, 55, 0.55),
+        35vw 55vh rgba(200, 137, 55, 0.4),
+        54vw 42vh rgba(200, 137, 55, 0.65),
+        84vw 58vh rgba(200, 137, 55, 0.5),
+        20vw 78vh rgba(200, 137, 55, 0.7),
+        68vw 82vh rgba(200, 137, 55, 0.45);
+    content: "";
+    pointer-events: none;
+}
+body::before{
+    animation: petals-drift 18s linear infinite;
+}
+body::after{
+    width: 10px;
+    height: 7px;
+    opacity: 0.65;
+    transform: rotate(35deg);
+    animation: petals-drift 25s linear 3s infinite reverse;
+}
+body > *{
+    position: relative;
+    z-index: 1;
+}
+
+@keyframes petals-drift{
+    0%{
+        transform: translate3d(-8vw, -12vh, 0) rotate(0deg);
+    }
+    50%{
+        transform: translate3d(7vw, 48vh, 0) rotate(180deg);
+    }
+    100%{
+        transform: translate3d(-4vw, 112vh, 0) rotate(360deg);
+    }
 }
 h1{
     font-family:Georgia, 'Times New Roman', Times, serif;
