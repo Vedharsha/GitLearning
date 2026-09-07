@@ -1,31 +1,939 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Git Learning</title>
         <link href="style.css" rel="stylesheet" type="text/css">
     </head>
     <body>
-        <h1>Welcome</h1>
-        <h3>Happy to Start Learning Git</h3>
-        <h4>What is Git?</h4>
-        <p>Git is a distributed version control system that allows developers to track changes in their codebase, collaborate with others, and manage different versions of their projects. It is widely used in software development and has become an essential tool for modern programming workflows.</p>
-        <h4>Key Features of Git:</h4>
-        <ul>
-            <li>Distributed Architecture</li>
-            <li>Branching and Merging</li>
-            <li>Staging Area</li>
-            <li>Commit History</li>
-        </ul>
-        <h4>Git VS GitHub</h4>
-        <p>Git is a version control system that allows developers to track changes in their codebase, collaborate with others, and manage different versions of their projects. It is a command-line tool that can be used locally on a developer's machine.</p>
-        <p>GitHub, on the other hand, is a web-based platform that provides hosting for Git repositories. It allows developers to store their code online, collaborate with others, and share their projects with the community. GitHub also provides additional features such as issue tracking, project management, and continuous integration.</p>
-        <h4>Basic Git Commands</h4>
-        <ul>
-            <li><strong>git init:</strong> Initializes a new Git repository in the current directory.</li>
-            <li><strong>git clone:</strong> Creates a copy of an existing Git repository from a remote source.</li>
-            <li><strong>git add:</strong> Stages changes to be committed to the repository.</li>
-            <li><strong>git commit:</strong> Records the staged changes in the repository's history.</li>
-            <li><strong>git push:</strong> Uploads local commits to a remote repository.</li>
-            <li><strong>git pull:</strong> Fetches and merges changes from a remote repository into the local repository.</li>
-        </ul>
-    </body>   
+        <main class="page-shell">
+            <h1>Welcome</h1>
+            <h3>Happy to Start Learning Git</h3>
+
+            <h4>What is Git?</h4>
+            <p>Git is a distributed version control system that allows developers to track changes in their codebase, collaborate with others, and manage different versions of their projects. It is widely used in software development and has become an essential tool for modern programming workflows.</p>
+
+            <h4>Key Features of Git:</h4>
+            <ul>
+                <li>Distributed Architecture</li>
+                <li>Branching and Merging</li>
+                <li>Staging Area</li>
+                <li>Commit History</li>
+            </ul>
+
+            <h4>Git VS GitHub</h4>
+            <p>Git is a version control system that allows developers to track changes in their codebase, collaborate with others, and manage different versions of their projects. It is a command-line tool that can be used locally on a developer's machine.</p>
+            <p>GitHub, on the other hand, is a web-based platform that provides hosting for Git repositories. It allows developers to store their code online, collaborate with others, and share their projects with the community. GitHub also provides additional features such as issue tracking, project management, and continuous integration.</p>
+
+            <h4>Basic Git Commands</h4>
+            <ul>
+                <li><strong>git init:</strong> Initializes a new Git repository in the current directory.</li>
+                <li><strong>git clone:</strong> Creates a copy of an existing Git repository from a remote source.</li>
+                <li><strong>git add:</strong> Stages changes to be committed to the repository.</li>
+                <li><strong>git commit:</strong> Records the staged changes in the repository's history.</li>
+                <li><strong>git push:</strong> Uploads local commits to a remote repository.</li>
+                <li><strong>git pull:</strong> Fetches and merges changes from a remote repository into the local repository.</li>
+            </ul>
+
+            <section class="git-journey" aria-labelledby="git-journey-title">
+                <div class="journey-header">
+                    <p class="eyebrow">Git Learning Path</p>
+                    <h2 id="git-journey-title">🚀 Git in Action</h2>
+                    <p class="tagline">Learn → Practice → Understand</p>
+                </div>
+
+                <nav class="journey-nav" aria-label="Git command navigation">
+                    <a href="#command-01">01</a>
+                    <a href="#command-02">02</a>
+                    <a href="#command-03">03</a>
+                    <a href="#command-04">04</a>
+                    <a href="#command-05">05</a>
+                    <a href="#command-06">06</a>
+                    <a href="#command-07">07</a>
+                    <a href="#command-08">08</a>
+                    <a href="#command-09">09</a>
+                    <a href="#command-10">10</a>
+                    <a href="#command-11">11</a>
+                    <a href="#command-12">12</a>
+                    <a href="#command-13">13</a>
+                    <a href="#command-14">14</a>
+                    <a href="#command-15">15</a>
+                    <a href="#command-16">16</a>
+                    <a href="#command-17">17</a>
+                    <a href="#command-18">18</a>
+                    <a href="#command-19">19</a>
+                </nav>
+
+                <div class="command-group">
+                    <article class="command-card" id="command-01">
+                        <div class="command-meta">
+                            <span class="command-number">01 / 19</span>
+                            <h3>git init</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git init</strong> creates a new Git repository in the current folder so Git can start tracking files.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is used when you are starting a new project and want to turn a normal folder into a Git repository.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it at the beginning of a new project, before creating your first commit.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>This command does not create a remote repository. It only initializes Git locally in the current directory.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git init">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (master)
+$ git init
+
+Initialized empty Git repository in /Users/system/Desktop/GitLearning/.git/
+</pre>
+                        </div>
+
+                        <div class="history-box">
+                            <h4>Project history</h4>
+                            <pre>~/Desktop/GitLearning
+└── index.html
+    └── style.css
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-02">
+                        <div class="command-meta">
+                            <span class="command-number">02 / 19</span>
+                            <h3>git status</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git status</strong> shows the current state of your repository, including modified, staged, and untracked files.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It helps you understand what changed since the last commit and whether files are ready to be committed.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it often before committing, after editing files, or when you want to verify your working directory state.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p><strong>git status</strong> is a quick overview, not a detailed file diff. For detailed changes, use <strong>git diff</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git status">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (master)
+$ git status
+
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add &lt;file&gt;" to include in what will be committed)
+        index.html
+        style.css
+
+nothing added to commit but untracked files present
+</pre>
+                        </div>
+
+                        <div class="history-box">
+                            <h4>Project history</h4>
+                            <pre>~/Desktop/GitLearning
+├── index.html
+├── style.css
+└── .git/
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-03">
+                        <div class="command-meta">
+                            <span class="command-number">03 / 19</span>
+                            <h3>git add .</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git add .</strong> stages all tracked and new changes in the current directory so they are ready to be committed.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It prepares the working files to be saved in the next commit.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use this after creating or modifying files and before running <strong>git commit -m</strong>.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>The dot means “add everything from the current folder and below.” It can stage files you might not want to commit, so review your status first.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git add .">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (master)
+$ git add .
+
+# No output means the command succeeded.
+</pre>
+                        </div>
+
+                        <div class="history-box">
+                            <h4>Project history</h4>
+                            <pre>$ git status
+On branch master
+Changes to be committed:
+  new file:   index.html
+  new file:   style.css
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-04">
+                        <div class="command-meta">
+                            <span class="command-number">04 / 19</span>
+                            <h3>git commit -m</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git commit -m</strong> records the staged snapshot and creates a new commit with a message.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It saves your changes permanently in the project history with a clear message describing what changed.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it after reviewing the staged files and after making a meaningful set of changes.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>The commit message should explain the change clearly. A good message makes future history easier to understand.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git commit -m">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (master)
+$ git commit -m "Created welcome page"
+[master (root-commit) ec49c3e] Created welcome page
+ 2 files changed, 13 insertions(+)
+ create mode 100644 index.html
+ create mode 100644 style.css
+</pre>
+                        </div>
+
+                        <div class="history-box">
+                            <h4>Project history</h4>
+                            <pre>$ git log --oneline
+ec49c3e Created welcome page
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-05">
+                        <div class="command-meta">
+                            <span class="command-number">05 / 19</span>
+                            <h3>git log</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git log</strong> displays the commit history of the current branch in a detailed format.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It helps you review what changed over time and understand the context of previous work.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when you want to see commit messages, authors, dates, and the history of your project.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p><strong>git log</strong> is more verbose than <strong>git log --oneline</strong> and is best when you want full detail.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git log">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (master)
+$ git log
+
+commit ec49c3e
+Author: Developer &lt;dev@example.com&gt;
+Date:   Mon Sep 7 10:05:00 2026 +0000
+
+    Created welcome page
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-06">
+                        <div class="command-meta">
+                            <span class="command-number">06 / 19</span>
+                            <h3>git log --oneline</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git log --oneline</strong> shows the commit history in a compact one-line-per-commit format.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is useful for quickly scanning recent work and identifying important commits.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when you need a fast overview of recent project history without lots of detail.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>This is a shorter view of the same history you would see with <strong>git log</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git log --oneline">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (master)
+$ git log --oneline
+
+ec49c3e Created welcome page
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-07">
+                        <div class="command-meta">
+                            <span class="command-number">07 / 19</span>
+                            <h3>git log --oneline --graph --all</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git log --oneline --graph --all</strong> shows a compact branch-and-merge graph for all refs in the repository.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It helps you visualize how branches diverged and merged in a project history.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when working with branches, merge conflicts, or reviewing how feature work was integrated.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>This command is especially helpful before merging a branch because it shows the path of commits and branch relationships.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git log --oneline --graph --all">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (feature)
+$ git log --oneline --graph --all
+
+* 5067347 (HEAD -> feature) Update website colors
+* f208981 (master) Styled welcome page
+* ec49c3e Created welcome page
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-08">
+                        <div class="command-meta">
+                            <span class="command-number">08 / 19</span>
+                            <h3>git push</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git push</strong> uploads local commits to a remote repository such as GitHub.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It shares your latest work with others and updates the remote branch with your local commits.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it after creating commits and when you are ready to publish or sync your branch.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>This requires a configured remote and usually authentication. If your branch has diverged from the remote, Git may ask you to pull or rebase first.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git push">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git push origin main
+
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+To https://github.com/example/GitLearning.git
+ * [new branch]      main -> main
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-09">
+                        <div class="command-meta">
+                            <span class="command-number">09 / 19</span>
+                            <h3>git pull</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git pull</strong> fetches remote changes and merges them into your current branch.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It keeps your local branch up to date with the latest changes from the remote repository.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it before working on an existing project or when your teammates have pushed changes you need locally.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p><strong>git pull</strong> combines fetching and merging. If local changes conflict with remote changes, Git will stop and ask you to resolve them.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git pull">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git pull origin main
+
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+From https://github.com/example/GitLearning
+ * branch            main -> FETCH_HEAD
+Already up to date.
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-10">
+                        <div class="command-meta">
+                            <span class="command-number">10 / 19</span>
+                            <h3>git clone</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git clone</strong> creates a local copy of an existing remote repository.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is used to download a project from a remote source so you can start working on it locally.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when you want to get a project from GitHub or another remote repository onto your machine.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>After cloning, the repository is already connected to the remote, and Git usually creates a default branch such as main or master.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git clone">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop
+$ git clone https://github.com/example/GitLearning.git
+
+Cloning into 'GitLearning'...
+remote: Enumerating objects: 15, done.
+remote: Counting objects: 100% (15/15), done.
+Receiving objects: 100% (15/15), 5.42 KiB | 3.89 MiB/s
+Resolving deltas: 100% (4/4), done.
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-11">
+                        <div class="command-meta">
+                            <span class="command-number">11 / 19</span>
+                            <h3>git remote -v</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git remote -v</strong> lists the configured remote repositories and the URLs they are connected to.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is used to confirm which remote repository your project is linked to.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when you need to check whether a repository points to GitHub, an internal server, or a different remote.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>The <strong>-v</strong> option shows the remote URLs in a verbose form, including fetch and push destinations.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git remote -v">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git remote -v
+
+origin  https://github.com/example/GitLearning.git (fetch)
+origin  https://github.com/example/GitLearning.git (push)
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-12">
+                        <div class="command-meta">
+                            <span class="command-number">12 / 19</span>
+                            <h3>git branch</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git branch</strong> lists local branches in the repository and highlights the current branch.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It helps you view and manage the branch structure of the project.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when planning feature work, checking the available branch names, or verifying which branch you are on.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p><strong>git branch</strong> does not switch branches. It only shows them unless you combine it with other branch commands.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git branch">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git branch
+
+* main
+  feature
+  ui
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-13">
+                        <div class="command-meta">
+                            <span class="command-number">13 / 19</span>
+                            <h3>git switch</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git switch</strong> changes the working directory to another branch.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is used to move between branches so you can work on different tasks without mixing changes.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when you want to move from the main branch to a feature branch, for example.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>Before switching branches, Git checks whether your working tree is clean enough to move safely.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git switch">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git switch feature
+
+Switched to branch 'feature'
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-14">
+                        <div class="command-meta">
+                            <span class="command-number">14 / 19</span>
+                            <h3>git switch -c</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git switch -c</strong> creates a new branch and immediately switches to it.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is used when starting a new feature or bug fix in a separate branch.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it before making changes that should not affect the main branch yet.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>The branch name should describe the task clearly, such as <strong>feature</strong>, <strong>ui</strong>, or <strong>bugfix</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git switch -c">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git switch -c ui a4fda45
+
+Switched to a new branch 'ui' based on 'a4fda45'
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-15">
+                        <div class="command-meta">
+                            <span class="command-number">15 / 19</span>
+                            <h3>git branch -d</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git branch -d</strong> deletes a local branch after it has been merged.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It cleans up finished work and removes branches that are no longer needed.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it after a feature branch has been merged and is ready to be deleted.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>Git normally prevents deleting an unmerged branch. If you want to force deletion, you must use a stronger option, but that is usually not recommended.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git branch -d">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git branch -d ui
+
+Deleted branch ui (was a4fda45).
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-16">
+                        <div class="command-meta">
+                            <span class="command-number">16 / 19</span>
+                            <h3>git merge</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git merge</strong> combines the commits from another branch into the current branch.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It integrates completed feature work into the main project line.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it after a feature branch has been tested and you are ready to bring it into the main branch.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>If both branches changed the same lines, Git may create a merge conflict. You must resolve those conflicts manually before finishing the merge.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git merge">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git merge feature
+
+Updating 5067347..4d2f2e5
+Fast-forward
+
+# Or a merge commit may appear depending on branch history.
+</pre>
+                        </div>
+
+                        <div class="history-box">
+                            <h4>Git history visualization</h4>
+                            <pre>*   4d2f2e5 (HEAD -> main) Merge feature branch
+|\
+| * 6acec51 (feature) Updated background color
+| * a077c3e Changed heading color
+|/
+* 5067347 Updated website colors
+* f208981 Styled welcome page
+* ec49c3e Created welcome page
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-17">
+                        <div class="command-meta">
+                            <span class="command-number">17 / 19</span>
+                            <h3>git diff</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git diff</strong> shows changes in the working tree compared with the index or the last staged version.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It is used to review unstaged changes before adding them to the next commit.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it to check exactly what changed and confirm the adjustments you want to stage.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p><strong>git diff</strong> mainly shows unstaged changes. If you want to see changes already staged for commit, use <strong>git diff --staged</strong>.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git diff">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git diff
+
+diff --git a/style.css b/style.css
+index 3d597c2..d4c7f8a 100644
+--- a/style.css
++++ b/style.css
+@@ -1,3 +1,6 @@
+ body {
+-  background: black;
++  background: #111827;
++  color: #f9fafb;
+ }
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-18">
+                        <div class="command-meta">
+                            <span class="command-number">18 / 19</span>
+                            <h3>git diff --staged</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git diff --staged</strong> shows changes that are currently staged for the next commit.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It helps you verify the exact contents you are about to commit before creating the commit.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it after <strong>git add .</strong> and before <strong>git commit -m</strong>.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p>Unlike <strong>git diff</strong>, this command focuses on staged changes instead of unstaged changes.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git diff --staged">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git diff --staged
+
+diff --git a/index.html b/index.html
+index f438c31..c11de70 100644
+--- a/index.html
++++ b/index.html
+@@ -1,10 +1,16 @@
+ &lt;h1&gt;Welcome&lt;/h1&gt;
++&lt;h2&gt;Git in Action&lt;/h2&gt;
++&lt;p&gt;Learn Git step by step.&lt;/p&gt;
+</pre>
+                        </div>
+                    </article>
+
+                    <article class="command-card" id="command-19">
+                        <div class="command-meta">
+                            <span class="command-number">19 / 19</span>
+                            <h3>git diff HEAD</h3>
+                        </div>
+
+                        <div class="command-info">
+                            <div>
+                                <h4>Definition</h4>
+                                <p><strong>git diff HEAD</strong> compares the current working tree and staging area against the latest commit.</p>
+                            </div>
+                            <div>
+                                <h4>What is it used for?</h4>
+                                <p>It shows everything changed since the last commit, including both staged and unstaged work.</p>
+                            </div>
+                            <div>
+                                <h4>When should I use it?</h4>
+                                <p>Use it when you want a full picture of the current branch state compared with the latest commit.</p>
+                            </div>
+                            <div>
+                                <h4>Important Note</h4>
+                                <p><strong>HEAD</strong> refers to the current checked-out commit. This command is useful for seeing the total difference between your current work and the last saved checkpoint.</p>
+                            </div>
+                        </div>
+
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git diff HEAD">
+                            <div class="terminal-header">
+                                <span class="dot red"></span>
+                                <span class="dot yellow"></span>
+                                <span class="dot green"></span>
+                                <span class="terminal-title">Git Bash</span>
+                            </div>
+                            <pre>user@system ~/Desktop/GitLearning (main)
+$ git diff HEAD
+
+diff --git a/index.html b/index.html
+index 65ca0d5..b2a7d1e 100644
+--- a/index.html
++++ b/index.html
+@@ -1,6 +1,11 @@
+ &lt;h1&gt;Welcome&lt;/h1&gt;
++&lt;h2&gt;Git in Action&lt;/h2&gt;
++&lt;p&gt;Learn Git step by step.&lt;/p&gt;
++
++&lt;div class="git-journey"&gt;...&lt;/div&gt;
+</pre>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </body>
 </html>
+
