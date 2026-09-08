@@ -63,32 +63,32 @@
                     <a href="#command-17">diff</a>
                     <a href="#command-18">diff --staged</a>
                     <a href="#command-19">diff HEAD</a>
-                    <a href="#">git rebase</a>
-                    <a href="#">git rebase --continue</a>
-                    <a href="#">git fetch</a>
-                    <a href="#">git init + git add + git commit + git remote add + git push</a>
-                    <a href="#">git branch -w</a>
-                    <a href="#">git diff ui origin/ui</a>
-                    <a href="#">git pull</a>
-                    <a href="#">git log --oneline --graph -5</a>
-                    <a href="#">git cherry-pick</a>
-                    <a href="#">git cherry-pick --continue</a>
-                    <a href="#">git cherry-pick --abort</a>
-                    <a href="#">git branch -a</a>
-                    <a href="#">git remote -v</a>
-                    <a href="#">git status -sb</a>
-                    <a href="#">git branch -r</a>
-                    <a href="#">git push -u branchName</a>
-                    <a href="#">git remote show origin</a>
-                    <a href="#">git tag</a>
-                    <a href="#">git tag -d tagName</a>
-                    <a href="#">git tag -f tagName</a>
-                    <a href="#">git rev-list -m 1 tagName</a>
-                    <a href="#">git cat-file</a>
-                    <a href="#">git reflog</a>
-                    <a href="#">git show HEAD@{1}</a>
-                    <a href="#">git reflog -n 5</a>
-                    <a href="#">git reflog branchName</a>
+                    <a href="#command-20">git rebase</a>
+                    <a href="#command-21">git rebase --continue</a>
+                    <a href="#command-22">git fetch</a>
+                    <a href="#command-23">git init + git add + git commit + git remote add + git push</a>
+                    <a href="#command-24">git branch -vv</a>
+                    <a href="#command-25">git diff ui origin/ui</a>
+                    <a href="#command-26">git pull</a>
+                    <a href="#command-27">git log --oneline --graph -5</a>
+                    <a href="#command-28">git cherry-pick</a>
+                    <a href="#command-29">git cherry-pick --continue</a>
+                    <a href="#command-30">git cherry-pick --abort</a>
+                    <a href="#command-31">git branch -a</a>
+                    <a href="#command-32">git remote -v</a>
+                    <a href="#command-33">git status -sb</a>
+                    <a href="#command-34">git branch -r</a>
+                    <a href="#command-35">git push -u branchName</a>
+                    <a href="#command-36">git remote show origin</a>
+                    <a href="#command-37">git tag</a>
+                    <a href="#command-38">git tag -d tagName</a>
+                    <a href="#command-39">git tag -f tagName</a>
+                    <a href="#command-40">git rev-list -m 1 tagName</a>
+                    <a href="#command-41">git cat-file</a>
+                    <a href="#command-42">git reflog</a>
+                    <a href="#command-43">git show HEAD@{1}</a>
+                    <a href="#command-44">git reflog -n 5</a>
+                    <a href="#command-45">git reflog branchName</a>
                 </nav>
 
                 <div class="command-group">
@@ -101,55 +101,7 @@
                         <div class="command-info">
                             <div>
                                 <h4>Definition</h4>
-                                <p><strong>git init</strong> creates a new Git repository in the current folder so Git can start tracking files.</p>
-                            </div>
-                            <div>
-                                <h4>What is it used for?</h4>
-                                <p>It is used when you are starting a new project and want to turn a normal folder into a Git repository.</p>
-                            </div>
-                            <div>
-                                <h4>When should I use it?</h4>
-                                <p>Use it at the beginning of a new project, before creating your first commit.</p>
-                            </div>
-                            <div>
-                                <h4>Important Note</h4>
-                                <p>This command does not create a remote repository. It only initializes Git locally in the current directory.</p>
-                            </div>
-                        </div>
-
-                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git init">
-                            <div class="terminal-header">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                                <span class="terminal-title">Git Bash</span>
-                            </div>
-                            <pre>user@system ~/Desktop/GitLearning (master)
-$ git init
-
-Initialized empty Git repository in /Users/system/Desktop/GitLearning/.git/
-</pre>
-                        </div>
-
-                        <div class="history-box">
-                            <h4>Project history</h4>
-                            <pre>~/Desktop/GitLearning
-└── index.html
-    └── style.css
-</pre>
-                        </div>
-                    </article>
-
-                    <article class="command-card" id="command-02">
-                        <div class="command-meta">
-                            <span class="command-number">02 / 19</span>
-                            <h3>git status</h3>
-                        </div>
-
-                        <div class="command-info">
-                            <div>
-                                <h4>Definition</h4>
-                                <p><strong>git status</strong> shows the current state of your repository, including modified, staged, and untracked files.</p>
+                                <p><strong>git init</strong> initializes a new Git repository in the current directory.</p>
                             </div>
                             <div>
                                 <h4>What is it used for?</h4>
@@ -883,7 +835,7 @@ index 3d597c2..d4c7f8a 100644
                             </div>
                             <div>
                                 <h4>Important Note</h4>
-                                <p>Unlike <strong>git diff</strong>, this command focuses on staged changes instead of unstaged changes.</p>
+                                <p>It is limited to staged changes. It does not show edits that have not been added with <strong>git add</strong>.</p>
                             </div>
                         </div>
 
@@ -895,16 +847,16 @@ index 3d597c2..d4c7f8a 100644
                                 <span class="terminal-title">Git Bash</span>
                             </div>
                             <pre>user@system ~/Desktop/GitLearning (main)
+$ git add index.html
 $ git diff --staged
 
 diff --git a/index.html b/index.html
-index f438c31..c11de70 100644
+index 65ca0d5..c11de70 100644
 --- a/index.html
 +++ b/index.html
-@@ -1,10 +1,16 @@
+@@ -1,3 +1,4 @@
  &lt;h1&gt;Welcome&lt;/h1&gt;
 +&lt;h2&gt;Git in Action&lt;/h2&gt;
-+&lt;p&gt;Learn Git step by step.&lt;/p&gt;
 </pre>
                         </div>
                     </article>
@@ -957,10 +909,44 @@ index 65ca0d5..b2a7d1e 100644
 </pre>
                         </div>
                     </article>
+                    <article class="command-card" id="command-20">
+                        <div class="command-meta"><span class="command-number">20 / 45</span><h3>git rebase</h3></div>
+                        <div class="command-info"><div><h4>Definition</h4><p><strong>git rebase</strong> moves commits onto a new base commit.</p></div><div><h4>What is it used for?</h4><p>It creates a cleaner, more linear project history.</p></div><div><h4>When should I use it?</h4><p>Use it to update a feature branch with the latest <strong>main</strong> changes.</p></div><div><h4>Important Note</h4><p>Rebase rewrites history, so avoid rebasing commits others already use.</p></div></div>
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git rebase"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git switch feature&#10;$ git rebase main&#10;Successfully rebased and updated refs/heads/feature.</pre></div>
+                    </article>
+                    <article class="command-card" id="command-21">
+                        <div class="command-meta"><span class="command-number">21 / 45</span><h3>git rebase --continue</h3></div>
+                        <div class="command-info"><div><h4>Definition</h4><p><strong>git rebase --continue</strong> resumes a paused rebase.</p></div><div><h4>What is it used for?</h4><p>It continues applying commits after a conflict is resolved.</p></div><div><h4>When should I use it?</h4><p>Use it after fixing conflicts and staging the resolved files.</p></div><div><h4>Important Note</h4><p>Remove all conflict markers before staging and continuing.</p></div></div>
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git rebase --continue"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git add index.html&#10;$ git rebase --continue&#10;Successfully rebased and updated refs/heads/feature.</pre></div>
+                    </article>
+                    <article class="command-card" id="command-22"><div class="command-meta"><span class="command-number">22 / 45</span><h3>git fetch</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git fetch</strong> downloads commits and references from a remote.</p></div><div><h4>What is it used for?</h4><p>It lets you inspect remote changes without modifying your files.</p></div><div><h4>When should I use it?</h4><p>Use it before comparing, merging, or rebasing remote updates.</p></div><div><h4>Important Note</h4><p>Fetch does not merge changes into your current branch.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git fetch"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git fetch origin&#10;From github.com:team/project&#10;   main -&gt; origin/main</pre></div></article>
+                    <article class="command-card" id="command-23"><div class="command-meta"><span class="command-number">23 / 45</span><h3>git init + git add + git commit + git remote add + git push</h3></div><div class="command-info"><div><h4>Definition</h4><p>This sequence initializes, saves, connects, and publishes a local project.</p></div><div><h4>What is it used for?</h4><p>It turns a local folder into a remote-connected repository.</p></div><div><h4>When should I use it?</h4><p>Use it when publishing a new project to an empty remote.</p></div><div><h4>Important Note</h4><p>Replace <strong>URL</strong> and <strong>main</strong> with your values.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for initial repository setup"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git init&#10;$ git add .&#10;$ git commit -m "Initial commit"&#10;$ git remote add origin URL&#10;$ git push -u origin main</pre></div></article>
+                    <article class="command-card" id="command-24"><div class="command-meta"><span class="command-number">24 / 45</span><h3>git branch -vv</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git branch -vv</strong> lists local branches with their upstream branches and latest commit.</p></div><div><h4>What is it used for?</h4><p>It shows branch tracking relationships and whether branches are ahead or behind.</p></div><div><h4>When should I use it?</h4><p>Use it when checking which remote branch a local branch tracks.</p></div><div><h4>Important Note</h4><p>Upstream details appear only when a tracking branch has been configured.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git branch -vv"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git branch -vv&#10;* main    8a12c4d [origin/main] Add navigation&#10;  feature 7c31ab2 [origin/feature: ahead 1] Update layout</pre></div></article>
+                    <article class="command-card" id="command-25"><div class="command-meta"><span class="command-number">25 / 45</span><h3>git diff ui origin/ui</h3></div><div class="command-info"><div><h4>Definition</h4><p>This command compares <strong>ui</strong> with <strong>origin/ui</strong>.</p></div><div><h4>What is it used for?</h4><p>It shows differences between local and remote-tracking branches.</p></div><div><h4>When should I use it?</h4><p>Use it after <strong>git fetch</strong> and before synchronizing branches.</p></div><div><h4>Important Note</h4><p>The remote-tracking reference may be outdated until you fetch.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git diff ui origin/ui"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git fetch origin&#10;$ git diff ui origin/ui</pre></div></article>
+                    <article class="command-card" id="command-26"><div class="command-meta"><span class="command-number">26 / 45</span><h3>git pull</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git pull</strong> fetches remote changes and integrates them.</p></div><div><h4>What is it used for?</h4><p>It updates your current branch from its upstream branch.</p></div><div><h4>When should I use it?</h4><p>Use it before starting work when teammates have pushed changes.</p></div><div><h4>Important Note</h4><p>Pull may create merge conflicts that you must resolve.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git pull"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git pull origin main&#10;Already up to date.</pre></div></article>
+                    <article class="command-card" id="command-27"><div class="command-meta"><span class="command-number">27 / 45</span><h3>git log --oneline --graph -5</h3></div><div class="command-info"><div><h4>Definition</h4><p>This command displays five commits as a compact graph.</p></div><div><h4>What is it used for?</h4><p>It provides a quick view of recent history and branches.</p></div><div><h4>When should I use it?</h4><p>Use it when reviewing recent commits before merging or releasing.</p></div><div><h4>Important Note</h4><p>The <strong>-5</strong> option limits the output to five entries, while <strong>--graph</strong> draws branch relationships.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git log --oneline --graph -5"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git log --oneline --graph -5&#10;* 8a12c4d Add navigation&#10;| * 7c31ab2 Update feature layout&#10;|/&#10;* 4b91f20 Update styles&#10;* 2d7e8a1 Add command cards&#10;* 1a0b3c4 Initial commit</pre></div></article>
+                    <article class="command-card" id="command-28"><div class="command-meta"><span class="command-number">28 / 45</span><h3>git cherry-pick</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git cherry-pick</strong> applies an existing commit to the current branch.</p></div><div><h4>What is it used for?</h4><p>It brings one targeted fix or feature into another branch.</p></div><div><h4>When should I use it?</h4><p>Use it when you need one commit without merging a whole branch.</p></div><div><h4>Important Note</h4><p>Cherry-picking creates a new commit with a new identity.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git cherry-pick"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git cherry-pick 8a12c4d&#10;[main 91fd2a0] Add navigation</pre></div></article>
+                    <article class="command-card" id="command-29"><div class="command-meta"><span class="command-number">29 / 45</span><h3>git cherry-pick --continue</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git cherry-pick --continue</strong> resumes a paused cherry-pick.</p></div><div><h4>What is it used for?</h4><p>It continues after a conflict has been resolved.</p></div><div><h4>When should I use it?</h4><p>Use it after fixing and staging the conflicting files.</p></div><div><h4>Important Note</h4><p>Check the staged resolution before continuing.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git cherry-pick --continue"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git add app.js&#10;$ git cherry-pick --continue</pre></div></article>
+                    <article class="command-card" id="command-30"><div class="command-meta"><span class="command-number">30 / 45</span><h3>git cherry-pick --abort</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git cherry-pick --abort</strong> cancels an in-progress cherry-pick.</p></div><div><h4>What is it used for?</h4><p>It restores the branch to its state before the cherry-pick.</p></div><div><h4>When should I use it?</h4><p>Use it when a conflict means the commit should not be applied.</p></div><div><h4>Important Note</h4><p>Any conflict-resolution work from that operation is discarded.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git cherry-pick --abort"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git cherry-pick --abort</pre></div></article>
+                    <article class="command-card" id="command-31"><div class="command-meta"><span class="command-number">31 / 45</span><h3>git branch -a</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git branch -a</strong> lists local and remote-tracking branches.</p></div><div><h4>What is it used for?</h4><p>It shows every branch reference available in the repository.</p></div><div><h4>When should I use it?</h4><p>Use it when locating a branch before switching or checking it out.</p></div><div><h4>Important Note</h4><p>Remote branches are references, not local working branches.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git branch -a"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git branch -a&#10;* main&#10;  remotes/origin/main</pre></div></article>
+                    <article class="command-card" id="command-32"><div class="command-meta"><span class="command-number">32 / 45</span><h3>git remote -v</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git remote -v</strong> shows configured fetch and push URLs.</p></div><div><h4>What is it used for?</h4><p>It verifies where synchronization operations connect.</p></div><div><h4>When should I use it?</h4><p>Use it when checking or troubleshooting a repository remote.</p></div><div><h4>Important Note</h4><p>Fetch and push URLs can be different.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git remote -v"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git remote -v&#10;origin  git@github.com:team/project.git (fetch)&#10;origin  git@github.com:team/project.git (push)</pre></div></article>
+                    <article class="command-card" id="command-33"><div class="command-meta"><span class="command-number">33 / 45</span><h3>git status -sb</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git status -sb</strong> shows short status and the branch header.</p></div><div><h4>What is it used for?</h4><p>It gives a compact overview of tracking and file changes.</p></div><div><h4>When should I use it?</h4><p>Use it for a quick check before staging or committing.</p></div><div><h4>Important Note</h4><p>The first column uses symbols such as <strong>M</strong> for modified files.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git status -sb"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git status -sb&#10;## main...origin/main&#10; M index.html</pre></div></article>
+                    <article class="command-card" id="command-34"><div class="command-meta"><span class="command-number">34 / 45</span><h3>git branch -r</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git branch -r</strong> lists remote-tracking branches.</p></div><div><h4>What is it used for?</h4><p>It shows branches available from configured remotes.</p></div><div><h4>When should I use it?</h4><p>Use it when inspecting remote branches before checking one out.</p></div><div><h4>Important Note</h4><p>Run <strong>git fetch</strong> first to refresh remote-tracking references.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git branch -r"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git branch -r&#10;  origin/HEAD -&gt; origin/main&#10;  origin/main</pre></div></article>
+                    <article class="command-card" id="command-35"><div class="command-meta"><span class="command-number">35 / 45</span><h3>git push -u branchName</h3></div><div class="command-info"><div><h4>Definition</h4><p>This command publishes a branch and sets its upstream.</p></div><div><h4>What is it used for?</h4><p>It connects a new local branch to a remote branch.</p></div><div><h4>When should I use it?</h4><p>Use it the first time you push a new branch.</p></div><div><h4>Important Note</h4><p>The usual complete form is <strong>git push -u origin branchName</strong>.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git push -u branchName"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git push -u origin branchName&#10;branchName -&gt; branchName</pre></div></article>
+                    <article class="command-card" id="command-36"><div class="command-meta"><span class="command-number">36 / 45</span><h3>git remote show origin</h3></div><div class="command-info"><div><h4>Definition</h4><p>Displays detailed information about the <strong>origin</strong> remote.</p></div><div><h4>What is it used for?</h4><p>It shows tracked branches, URLs, and remote configuration.</p></div><div><h4>When should I use it?</h4><p>Use it when checking upstream and synchronization settings.</p></div><div><h4>Important Note</h4><p>The output depends on the remote's current state.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git remote show origin"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git remote show origin&#10;* remote origin&#10;  HEAD branch: main</pre></div></article>
+                    <article class="command-card" id="command-37"><div class="command-meta"><span class="command-number">37 / 45</span><h3>git tag</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git tag</strong> lists the repository's tags.</p></div><div><h4>What is it used for?</h4><p>It displays release labels and version references.</p></div><div><h4>When should I use it?</h4><p>Use it when reviewing available releases.</p></div><div><h4>Important Note</h4><p>This lists local tags; use a remote command to inspect remote tags.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git tag"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git tag&#10;v1.0.0&#10;v1.1.0</pre></div></article>
+                    <article class="command-card" id="command-38"><div class="command-meta"><span class="command-number">38 / 45</span><h3>git tag -d tagName</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git tag -d tagName</strong> deletes a local tag.</p></div><div><h4>What is it used for?</h4><p>It removes a tag that is no longer needed locally.</p></div><div><h4>When should I use it?</h4><p>Use it when correcting or cleaning up local release labels.</p></div><div><h4>Important Note</h4><p>Deleting the local tag does not delete a remote tag.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git tag -d tagName"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git tag -d tagName&#10;Deleted tag 'tagName'</pre></div></article>
+                    <article class="command-card" id="command-39"><div class="command-meta"><span class="command-number">39 / 45</span><h3>git tag -f tagName</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git tag -f tagName</strong> forcefully creates or moves a tag.</p></div><div><h4>What is it used for?</h4><p>It corrects a local tag reference.</p></div><div><h4>When should I use it?</h4><p>Use it only when intentionally replacing a tag target.</p></div><div><h4>Important Note</h4><p>Moving shared tags can confuse collaborators and releases.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git tag -f tagName"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git tag -f tagName&#10;Updated tag 'tagName'</pre></div></article>
+                    <article class="command-card" id="command-40"><div class="command-meta"><span class="command-number">40 / 45</span><h3>git rev-list -m 1 tagName</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git rev-list -m 1 tagName</strong> lists commits reachable from a tag using first-parent history.</p></div><div><h4>What is it used for?</h4><p>It helps inspect the ancestry behind a tagged merge.</p></div><div><h4>When should I use it?</h4><p>Use it when tracing release history through merge commits.</p></div><div><h4>Important Note</h4><p>The <strong>-m 1</strong> option follows the first parent of merge commits.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git rev-list -m 1 tagName"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git rev-list -m 1 tagName&#10;8a12c4d&#10;4b91f20</pre></div></article>
+                    <article class="command-card" id="command-41"><div class="command-meta"><span class="command-number">41 / 45</span><h3>git cat-file</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git cat-file</strong> displays information or content from Git's object database.</p></div><div><h4>What is it used for?</h4><p>It inspects an object's type, size, or stored contents.</p></div><div><h4>When should I use it?</h4><p>Use it when investigating commits, trees, blobs, or raw Git objects.</p></div><div><h4>Important Note</h4><p>It is a low-level inspection command and requires an object name or ID.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git cat-file"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git cat-file -t HEAD&#10;commit</pre></div></article>
+                    <article class="command-card" id="command-42"><div class="command-meta"><span class="command-number">42 / 45</span><h3>git reflog</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git reflog</strong> records local updates to branch and HEAD references.</p></div><div><h4>What is it used for?</h4><p>It helps find previous positions after history changes.</p></div><div><h4>When should I use it?</h4><p>Use it to recover commits after a reset, rebase, or checkout.</p></div><div><h4>Important Note</h4><p>Reflogs are local and are not normally shared with remotes.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git reflog"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git reflog&#10;8a12c4d HEAD@{0}: commit: Add navigation&#10;4b91f20 HEAD@{1}: checkout: moving to main</pre></div></article>
+                    <article class="command-card" id="command-43"><div class="command-meta"><span class="command-number">43 / 45</span><h3>git show HEAD@{1}</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git show HEAD@{1}</strong> displays the previous HEAD reflog entry.</p></div><div><h4>What is it used for?</h4><p>It lets you inspect the commit before the latest HEAD movement.</p></div><div><h4>When should I use it?</h4><p>Use it when reviewing or recovering a previous repository state.</p></div><div><h4>Important Note</h4><p>The reflog entry number is local and changes as new actions occur.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git show HEAD at one"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git show HEAD@{1}&#10;commit 4b91f20&#10;Update styles</pre></div></article>
+                    <article class="command-card" id="command-44"><div class="command-meta"><span class="command-number">44 / 45</span><h3>git reflog -n 5</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git reflog -n 5</strong> shows five recent reflog entries.</p></div><div><h4>What is it used for?</h4><p>It provides a short history of local reference movements.</p></div><div><h4>When should I use it?</h4><p>Use it for a quick recovery check after changing history.</p></div><div><h4>Important Note</h4><p>The <strong>-n 5</strong> option limits the displayed entries.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git reflog -n 5"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git reflog -n 5&#10;8a12c4d HEAD@{0}: commit: Add navigation&#10;4b91f20 HEAD@{1}: checkout: moving to main</pre></div></article>
+                    <article class="command-card" id="command-45"><div class="command-meta"><span class="command-number">45 / 45</span><h3>git reflog branchName</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git reflog branchName</strong> shows movements for a named branch.</p></div><div><h4>What is it used for?</h4><p>It helps inspect or recover a branch's recent history.</p></div><div><h4>When should I use it?</h4><p>Use it when investigating changes to one specific branch reference.</p></div><div><h4>Important Note</h4><p>The branch reflog is local and may expire according to repository settings.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git reflog branchName"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git reflog branchName&#10;8a12c4d branchName@{0}: commit: Add navigation</pre></div></article>
                 </div>
             </section>
         </main>
-        <p>Copyrights @ Vedharsha </p>
+        <p style="text-align: center;">Copyrights @ Vedharsha </p>
         <!-- Collaboration test -->
     </body>
 </html>
