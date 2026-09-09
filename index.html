@@ -5,14 +5,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Git Learning</title>
         <link href="style.css" rel="stylesheet" type="text/css">
+        <script src="script.js" defer></script>
     </head>
     <body>
         <main class="page-shell">
-            <h1>Welcome</h1>
-            <h3>Happy to Start Learning Git</h3>
+            <header class="hero-panel" id="top">
+                <div class="hero-copy">
+                    <p class="eyebrow">Personal Git handbook</p>
+                    <h1>Git, understood in motion.</h1>
+                    <p class="hero-lede">A practical reference for turning working files into clean history, collaborating through remotes, and recovering when Git takes an unexpected turn.</p>
+                    <div class="hero-actions">
+                        <a class="primary-action" href="#commands">Start with the workflow</a>
+                        <a class="secondary-action" href="#workflows">Explore workflows</a>
+                    </div>
+                </div>
+                <div class="hero-snapshot" aria-label="Git workflow summary">
+                    <span class="snapshot-label">The core loop</span>
+                    <strong>edit</strong><span>-&gt;</span><strong>stage</strong><span>-&gt;</span><strong>commit</strong><span>-&gt;</span><strong>share</strong>
+                    <p>Every command below fits somewhere in this loop.</p>
+                </div>
+            </header>
 
-            <h4>What is Git?</h4>
-            <p>Git is a distributed version control system that allows developers to track changes in their codebase, collaborate with others, and manage different versions of their projects. It is widely used in software development and has become an essential tool for modern programming workflows.</p>
+            <section class="intro-grid" aria-label="Git foundations">
+                <div class="intro-copy">
+                    <h2>What is Git?</h2>
+                    <p>Git is a distributed version control system that records changes as a connected history of snapshots. It lets you experiment safely, compare versions, collaborate, and return to an earlier point when needed.</p>
+                    <p class="callout"><strong>Useful mental model:</strong> your working tree is what you are editing, the staging area is what you are preparing, and a commit is the saved checkpoint.</p>
+                </div>
+                <div class="foundation-list">
+                    <div><span>01</span><strong>Working tree</strong><small>Files you are currently editing</small></div>
+                    <div><span>02</span><strong>Staging area</strong><small>Changes selected for the next commit</small></div>
+                    <div><span>03</span><strong>Repository</strong><small>Permanent local history in <code>.git</code></small></div>
+                </div>
+            </section>
 
             <h4>Key Features of Git:</h4>
             <ul>
@@ -36,7 +61,20 @@
                 <li><strong>git pull:</strong> Fetches and merges changes from a remote repository into the local repository.</li>
             </ul>
 
-            <section class="git-journey" aria-labelledby="git-journey-title">
+            <section class="reference-section" id="workflows" aria-labelledby="workflow-title">
+                <div class="section-heading">
+                    <p class="eyebrow">Read the map before the commands</p>
+                    <h2 id="workflow-title">The workflows you will use most</h2>
+                    <p>Git becomes easier when each command has a place in a larger movement.</p>
+                </div>
+                <div class="workflow-grid">
+                    <article class="workflow-card"><span class="workflow-index">01</span><h3>Feature branch</h3><p>Keep focused work away from the shared branch until it is ready.</p><div class="flow-line"><b>main</b><i>-&gt;</i><b>switch -c feature</b><i>-&gt;</i><b>commit</b></div></article>
+                    <article class="workflow-card"><span class="workflow-index">02</span><h3>Sync without surprises</h3><p>Inspect remote movement before deciding whether to merge or rebase.</p><div class="flow-line"><b>fetch</b><i>-&gt;</i><b>inspect</b><i>-&gt;</i><b>pull / rebase</b></div></article>
+                    <article class="workflow-card"><span class="workflow-index">03</span><h3>Recover history</h3><p>Use reflog to find where HEAD was, then create a branch before the work disappears.</p><div class="flow-line"><b>reflog</b><i>-&gt;</i><b>show HEAD@{1}</b><i>-&gt;</i><b>switch -c rescue</b></div></article>
+                </div>
+            </section>
+
+            <section class="git-journey" id="commands" aria-labelledby="git-journey-title">
                 <div class="journey-header">
                     <p class="eyebrow">Git Learning Path</p>
                     <h2 id="git-journey-title">🚀 Git in Action</h2>
@@ -92,65 +130,24 @@
                 </nav>
 
                 <div class="command-group">
-                    <article class="command-card" id="command-01">
-                        <div class="command-meta">
-                            <span class="command-number">01 / 19</span>
-                            <h3>git init</h3>
-                        </div>
-
-                        <div class="command-info">
-                            <div>
-                                <h4>Definition</h4>
-                                <p><strong>git init</strong> initializes a new Git repository in the current directory.</p>
-                            </div>
-                            <div>
-                                <h4>What is it used for?</h4>
-                                <p>It helps you understand what changed since the last commit and whether files are ready to be committed.</p>
-                            </div>
-                            <div>
-                                <h4>When should I use it?</h4>
-                                <p>Use it often before committing, after editing files, or when you want to verify your working directory state.</p>
-                            </div>
-                            <div>
-                                <h4>Important Note</h4>
-                                <p><strong>git status</strong> is a quick overview, not a detailed file diff. For detailed changes, use <strong>git diff</strong>.</p>
-                            </div>
-                        </div>
-
-                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git status">
-                            <div class="terminal-header">
-                                <span class="dot red"></span>
-                                <span class="dot yellow"></span>
-                                <span class="dot green"></span>
-                                <span class="terminal-title">Git Bash</span>
-                            </div>
-                            <pre>user@system ~/Desktop/GitLearning (master)
-$ git status
-
-On branch master
-
-No commits yet
-
-Untracked files:
-  (use "git add &lt;file&gt;" to include in what will be committed)
-        index.html
-        style.css
-
-nothing added to commit but untracked files present
-</pre>
-                        </div>
-
-                        <div class="history-box">
-                            <h4>Project history</h4>
-                            <pre>~/Desktop/GitLearning
-├── index.html
-├── style.css
-└── .git/
-</pre>
-                        </div>
+                    <article class="command-card" id="command-01" data-scenario="init">
+                        <div class="command-meta"><span class="command-number">01 / 45</span><h3>git init</h3></div>
+                        <div class="command-info"><div><h4>What it does</h4><p>Creates a new Git repository in the current folder.</p></div><div><h4>Why use it?</h4><p>Start tracking a project that is not yet a repository.</p></div><div><h4>Important note</h4><p>It creates local history; add a remote separately.</p></div></div>
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git init"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git init
+Initialized empty Git repository in ~/Desktop/GitLearning/.git/</pre></div>
                     </article>
 
-                    <article class="command-card" id="command-03">
+                    <article class="command-card" id="command-02" data-scenario="status">
+                        <div class="command-meta"><span class="command-number">02 / 45</span><h3>git status</h3></div>
+                        <div class="command-info"><div><h4>What it does</h4><p>Shows the state of the working tree and staging area.</p></div><div><h4>Why use it?</h4><p>Check what changed before staging or committing.</p></div><div><h4>Important note</h4><p>It is a summary. Use <strong>git diff</strong> to inspect exact lines.</p></div></div>
+                        <div class="terminal-window" role="img" aria-label="Git Bash simulation for git status"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git status
+On branch main
+Untracked files:
+  index.html
+  style.css</pre></div>
+                    </article>
+
+                    <article class="command-card" id="command-03" data-scenario="add">
                         <div class="command-meta">
                             <span class="command-number">03 / 19</span>
                             <h3>git add .</h3>
@@ -200,7 +197,7 @@ Changes to be committed:
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-04">
+                    <article class="command-card" id="command-04" data-scenario="commit">
                         <div class="command-meta">
                             <span class="command-number">04 / 19</span>
                             <h3>git commit -m</h3>
@@ -249,7 +246,7 @@ ec49c3e Created welcome page
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-05">
+                    <article class="command-card" id="command-05" data-scenario="history">
                         <div class="command-meta">
                             <span class="command-number">05 / 19</span>
                             <h3>git log</h3>
@@ -293,7 +290,7 @@ Date:   Mon Sep 7 10:05:00 2026 +0000
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-06">
+                    <article class="command-card" id="command-06" data-scenario="history">
                         <div class="command-meta">
                             <span class="command-number">06 / 19</span>
                             <h3>git log --oneline</h3>
@@ -333,7 +330,7 @@ ec49c3e Created welcome page
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-07">
+                    <article class="command-card" id="command-07" data-scenario="history">
                         <div class="command-meta">
                             <span class="command-number">07 / 19</span>
                             <h3>git log --oneline --graph --all</h3>
@@ -375,7 +372,7 @@ $ git log --oneline --graph --all
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-08">
+                    <article class="command-card" id="command-08" data-scenario="remote">
                         <div class="command-meta">
                             <span class="command-number">08 / 19</span>
                             <h3>git push</h3>
@@ -418,7 +415,7 @@ To https://github.com/example/GitLearning.git
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-09">
+                    <article class="command-card" id="command-09" data-scenario="receive">
                         <div class="command-meta">
                             <span class="command-number">09 / 19</span>
                             <h3>git pull</h3>
@@ -462,7 +459,7 @@ Already up to date.
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-10">
+                    <article class="command-card" id="command-10" data-scenario="receive">
                         <div class="command-meta">
                             <span class="command-number">10 / 19</span>
                             <h3>git clone</h3>
@@ -506,7 +503,7 @@ Resolving deltas: 100% (4/4), done.
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-11">
+                    <article class="command-card" id="command-11" data-scenario="remote">
                         <div class="command-meta">
                             <span class="command-number">11 / 19</span>
                             <h3>git remote -v</h3>
@@ -547,7 +544,7 @@ origin  https://github.com/example/GitLearning.git (push)
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-12">
+                    <article class="command-card" id="command-12" data-scenario="branch">
                         <div class="command-meta">
                             <span class="command-number">12 / 19</span>
                             <h3>git branch</h3>
@@ -589,7 +586,7 @@ $ git branch
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-13">
+                    <article class="command-card" id="command-13" data-scenario="switch">
                         <div class="command-meta">
                             <span class="command-number">13 / 19</span>
                             <h3>git switch</h3>
@@ -629,7 +626,7 @@ Switched to branch 'feature'
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-14">
+                    <article class="command-card" id="command-14" data-scenario="switch">
                         <div class="command-meta">
                             <span class="command-number">14 / 19</span>
                             <h3>git switch -c</h3>
@@ -669,7 +666,7 @@ Switched to a new branch 'ui' based on 'a4fda45'
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-15">
+                    <article class="command-card" id="command-15" data-scenario="branch">
                         <div class="command-meta">
                             <span class="command-number">15 / 19</span>
                             <h3>git branch -d</h3>
@@ -709,7 +706,7 @@ Deleted branch ui (was a4fda45).
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-16">
+                    <article class="command-card" id="command-16" data-scenario="merge">
                         <div class="command-meta">
                             <span class="command-number">16 / 19</span>
                             <h3>git merge</h3>
@@ -765,7 +762,7 @@ Fast-forward
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-17">
+                    <article class="command-card" id="command-17" data-scenario="diff">
                         <div class="command-meta">
                             <span class="command-number">17 / 19</span>
                             <h3>git diff</h3>
@@ -814,7 +811,7 @@ index 3d597c2..d4c7f8a 100644
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-18">
+                    <article class="command-card" id="command-18" data-scenario="diff">
                         <div class="command-meta">
                             <span class="command-number">18 / 19</span>
                             <h3>git diff --staged</h3>
@@ -861,7 +858,7 @@ index 65ca0d5..c11de70 100644
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-19">
+                    <article class="command-card" id="command-19" data-scenario="diff">
                         <div class="command-meta">
                             <span class="command-number">19 / 19</span>
                             <h3>git diff HEAD</h3>
@@ -909,12 +906,12 @@ index 65ca0d5..b2a7d1e 100644
 </pre>
                         </div>
                     </article>
-                    <article class="command-card" id="command-20">
+                    <article class="command-card" id="command-20" data-scenario="rebase">
                         <div class="command-meta"><span class="command-number">20 / 45</span><h3>git rebase</h3></div>
                         <div class="command-info"><div><h4>Definition</h4><p><strong>git rebase</strong> moves commits onto a new base commit.</p></div><div><h4>What is it used for?</h4><p>It creates a cleaner, more linear project history.</p></div><div><h4>When should I use it?</h4><p>Use it to update a feature branch with the latest <strong>main</strong> changes.</p></div><div><h4>Important Note</h4><p>Rebase rewrites history, so avoid rebasing commits others already use.</p></div></div>
                         <div class="terminal-window" role="img" aria-label="Git Bash simulation for git rebase"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git switch feature&#10;$ git rebase main&#10;Successfully rebased and updated refs/heads/feature.</pre></div>
                     </article>
-                    <article class="command-card" id="command-21">
+                    <article class="command-card" id="command-21" data-scenario="rebase">
                         <div class="command-meta"><span class="command-number">21 / 45</span><h3>git rebase --continue</h3></div>
                         <div class="command-info"><div><h4>Definition</h4><p><strong>git rebase --continue</strong> resumes a paused rebase.</p></div><div><h4>What is it used for?</h4><p>It continues applying commits after a conflict is resolved.</p></div><div><h4>When should I use it?</h4><p>Use it after fixing conflicts and staging the resolved files.</p></div><div><h4>Important Note</h4><p>Remove all conflict markers before staging and continuing.</p></div></div>
                         <div class="terminal-window" role="img" aria-label="Git Bash simulation for git rebase --continue"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git add index.html&#10;$ git rebase --continue&#10;Successfully rebased and updated refs/heads/feature.</pre></div>
@@ -944,6 +941,17 @@ index 65ca0d5..b2a7d1e 100644
                     <article class="command-card" id="command-44"><div class="command-meta"><span class="command-number">44 / 45</span><h3>git reflog -n 5</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git reflog -n 5</strong> shows five recent reflog entries.</p></div><div><h4>What is it used for?</h4><p>It provides a short history of local reference movements.</p></div><div><h4>When should I use it?</h4><p>Use it for a quick recovery check after changing history.</p></div><div><h4>Important Note</h4><p>The <strong>-n 5</strong> option limits the displayed entries.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git reflog -n 5"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git reflog -n 5&#10;8a12c4d HEAD@{0}: commit: Add navigation&#10;4b91f20 HEAD@{1}: checkout: moving to main</pre></div></article>
                     <article class="command-card" id="command-45"><div class="command-meta"><span class="command-number">45 / 45</span><h3>git reflog branchName</h3></div><div class="command-info"><div><h4>Definition</h4><p><strong>git reflog branchName</strong> shows movements for a named branch.</p></div><div><h4>What is it used for?</h4><p>It helps inspect or recover a branch's recent history.</p></div><div><h4>When should I use it?</h4><p>Use it when investigating changes to one specific branch reference.</p></div><div><h4>Important Note</h4><p>The branch reflog is local and may expire according to repository settings.</p></div></div><div class="terminal-window" role="img" aria-label="Git Bash simulation for git reflog branchName"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git reflog branchName&#10;8a12c4d branchName@{0}: commit: Add navigation</pre></div></article>
                 </div>
+                <section class="reference-section split-reference" id="tags" aria-labelledby="tags-title">
+                    <div class="section-heading"><p class="eyebrow">Release landmarks</p><h2 id="tags-title">Git tags</h2><p>Name important commits so releases are easy to find.</p></div>
+                    <div class="reference-panel"><div><h3>Create and inspect</h3><pre><code>git tag v1.0.0
+git tag -a v1.0.0 -m "First release"
+git show v1.0.0</code></pre></div><div><h3>Share a release</h3><pre><code>git push origin --tags</code></pre></div></div>
+                </section>
+
+                <section class="reference-section" id="reflog" aria-labelledby="reflog-title">
+                    <div class="section-heading"><p class="eyebrow">Your local safety net</p><h2 id="reflog-title">Reflog and detached HEAD</h2><p>Reflog records local movements of HEAD and helps recover commits after resets, rebases, or detached work.</p></div>
+                    <div class="timeline"><div><span>HEAD@{2}</span><strong>commit C</strong></div><div><span>HEAD@{1}</span><strong>detached commit</strong></div><div class="timeline-current"><span>HEAD@{0}</span><strong>switch main</strong></div></div>
+                </section>
             </section>
         </main>
         <p style="text-align: center;">Copyrights @ Vedharsha </p>
