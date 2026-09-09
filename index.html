@@ -82,6 +82,14 @@
                 </div>
 
                 <nav class="journey-nav" aria-label="Git command navigation">
+                    <div class="journey-nav-tools">
+                        <label class="nav-search-label" for="command-search">Find a command</label>
+                        <input id="command-search" class="command-search" type="search" placeholder="Search commands" autocomplete="off">
+                        <div class="learning-progress" aria-live="polite">
+                            <span class="learning-progress-label">0 / 45 commands reviewed</span>
+                            <span class="learning-progress-track"><span class="learning-progress-fill"></span></span>
+                        </div>
+                    </div>
                     <a href="#command-01">init</a>
                     <a href="#command-02">status</a>
                     <a href="#command-03">add .</a>
@@ -130,14 +138,14 @@
                 </nav>
 
                 <div class="command-group">
-                    <article class="command-card" id="command-01" data-scenario="init">
+                    <article class="command-card" id="command-01">
                         <div class="command-meta"><span class="command-number">01 / 45</span><h3>git init</h3></div>
                         <div class="command-info"><div><h4>What it does</h4><p>Creates a new Git repository in the current folder.</p></div><div><h4>Why use it?</h4><p>Start tracking a project that is not yet a repository.</p></div><div><h4>Important note</h4><p>It creates local history; add a remote separately.</p></div></div>
                         <div class="terminal-window" role="img" aria-label="Git Bash simulation for git init"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git init
 Initialized empty Git repository in ~/Desktop/GitLearning/.git/</pre></div>
                     </article>
 
-                    <article class="command-card" id="command-02" data-scenario="status">
+                    <article class="command-card" id="command-02">
                         <div class="command-meta"><span class="command-number">02 / 45</span><h3>git status</h3></div>
                         <div class="command-info"><div><h4>What it does</h4><p>Shows the state of the working tree and staging area.</p></div><div><h4>Why use it?</h4><p>Check what changed before staging or committing.</p></div><div><h4>Important note</h4><p>It is a summary. Use <strong>git diff</strong> to inspect exact lines.</p></div></div>
                         <div class="terminal-window" role="img" aria-label="Git Bash simulation for git status"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git status
@@ -147,7 +155,7 @@ Untracked files:
   style.css</pre></div>
                     </article>
 
-                    <article class="command-card" id="command-03" data-scenario="add">
+                    <article class="command-card" id="command-03">
                         <div class="command-meta">
                             <span class="command-number">03 / 19</span>
                             <h3>git add .</h3>
@@ -197,7 +205,7 @@ Changes to be committed:
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-04" data-scenario="commit">
+                    <article class="command-card" id="command-04">
                         <div class="command-meta">
                             <span class="command-number">04 / 19</span>
                             <h3>git commit -m</h3>
@@ -246,7 +254,7 @@ ec49c3e Created welcome page
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-05" data-scenario="history">
+                    <article class="command-card" id="command-05">
                         <div class="command-meta">
                             <span class="command-number">05 / 19</span>
                             <h3>git log</h3>
@@ -290,7 +298,7 @@ Date:   Mon Sep 7 10:05:00 2026 +0000
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-06" data-scenario="history">
+                    <article class="command-card" id="command-06">
                         <div class="command-meta">
                             <span class="command-number">06 / 19</span>
                             <h3>git log --oneline</h3>
@@ -330,7 +338,7 @@ ec49c3e Created welcome page
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-07" data-scenario="history">
+                    <article class="command-card" id="command-07">
                         <div class="command-meta">
                             <span class="command-number">07 / 19</span>
                             <h3>git log --oneline --graph --all</h3>
@@ -372,7 +380,7 @@ $ git log --oneline --graph --all
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-08" data-scenario="remote">
+                    <article class="command-card" id="command-08">
                         <div class="command-meta">
                             <span class="command-number">08 / 19</span>
                             <h3>git push</h3>
@@ -415,7 +423,7 @@ To https://github.com/example/GitLearning.git
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-09" data-scenario="receive">
+                    <article class="command-card" id="command-09">
                         <div class="command-meta">
                             <span class="command-number">09 / 19</span>
                             <h3>git pull</h3>
@@ -459,7 +467,7 @@ Already up to date.
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-10" data-scenario="receive">
+                    <article class="command-card" id="command-10">
                         <div class="command-meta">
                             <span class="command-number">10 / 19</span>
                             <h3>git clone</h3>
@@ -503,7 +511,7 @@ Resolving deltas: 100% (4/4), done.
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-11" data-scenario="remote">
+                    <article class="command-card" id="command-11">
                         <div class="command-meta">
                             <span class="command-number">11 / 19</span>
                             <h3>git remote -v</h3>
@@ -544,7 +552,7 @@ origin  https://github.com/example/GitLearning.git (push)
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-12" data-scenario="branch">
+                    <article class="command-card" id="command-12">
                         <div class="command-meta">
                             <span class="command-number">12 / 19</span>
                             <h3>git branch</h3>
@@ -586,7 +594,7 @@ $ git branch
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-13" data-scenario="switch">
+                    <article class="command-card" id="command-13">
                         <div class="command-meta">
                             <span class="command-number">13 / 19</span>
                             <h3>git switch</h3>
@@ -626,7 +634,7 @@ Switched to branch 'feature'
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-14" data-scenario="switch">
+                    <article class="command-card" id="command-14">
                         <div class="command-meta">
                             <span class="command-number">14 / 19</span>
                             <h3>git switch -c</h3>
@@ -666,7 +674,7 @@ Switched to a new branch 'ui' based on 'a4fda45'
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-15" data-scenario="branch">
+                    <article class="command-card" id="command-15">
                         <div class="command-meta">
                             <span class="command-number">15 / 19</span>
                             <h3>git branch -d</h3>
@@ -706,7 +714,7 @@ Deleted branch ui (was a4fda45).
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-16" data-scenario="merge">
+                    <article class="command-card" id="command-16">
                         <div class="command-meta">
                             <span class="command-number">16 / 19</span>
                             <h3>git merge</h3>
@@ -762,7 +770,7 @@ Fast-forward
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-17" data-scenario="diff">
+                    <article class="command-card" id="command-17">
                         <div class="command-meta">
                             <span class="command-number">17 / 19</span>
                             <h3>git diff</h3>
@@ -811,7 +819,7 @@ index 3d597c2..d4c7f8a 100644
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-18" data-scenario="diff">
+                    <article class="command-card" id="command-18">
                         <div class="command-meta">
                             <span class="command-number">18 / 19</span>
                             <h3>git diff --staged</h3>
@@ -858,7 +866,7 @@ index 65ca0d5..c11de70 100644
                         </div>
                     </article>
 
-                    <article class="command-card" id="command-19" data-scenario="diff">
+                    <article class="command-card" id="command-19">
                         <div class="command-meta">
                             <span class="command-number">19 / 19</span>
                             <h3>git diff HEAD</h3>
@@ -906,12 +914,12 @@ index 65ca0d5..b2a7d1e 100644
 </pre>
                         </div>
                     </article>
-                    <article class="command-card" id="command-20" data-scenario="rebase">
+                    <article class="command-card" id="command-20">
                         <div class="command-meta"><span class="command-number">20 / 45</span><h3>git rebase</h3></div>
                         <div class="command-info"><div><h4>Definition</h4><p><strong>git rebase</strong> moves commits onto a new base commit.</p></div><div><h4>What is it used for?</h4><p>It creates a cleaner, more linear project history.</p></div><div><h4>When should I use it?</h4><p>Use it to update a feature branch with the latest <strong>main</strong> changes.</p></div><div><h4>Important Note</h4><p>Rebase rewrites history, so avoid rebasing commits others already use.</p></div></div>
                         <div class="terminal-window" role="img" aria-label="Git Bash simulation for git rebase"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git switch feature&#10;$ git rebase main&#10;Successfully rebased and updated refs/heads/feature.</pre></div>
                     </article>
-                    <article class="command-card" id="command-21" data-scenario="rebase">
+                    <article class="command-card" id="command-21">
                         <div class="command-meta"><span class="command-number">21 / 45</span><h3>git rebase --continue</h3></div>
                         <div class="command-info"><div><h4>Definition</h4><p><strong>git rebase --continue</strong> resumes a paused rebase.</p></div><div><h4>What is it used for?</h4><p>It continues applying commits after a conflict is resolved.</p></div><div><h4>When should I use it?</h4><p>Use it after fixing conflicts and staging the resolved files.</p></div><div><h4>Important Note</h4><p>Remove all conflict markers before staging and continuing.</p></div></div>
                         <div class="terminal-window" role="img" aria-label="Git Bash simulation for git rebase --continue"><div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div><pre>$ git add index.html&#10;$ git rebase --continue&#10;Successfully rebased and updated refs/heads/feature.</pre></div>

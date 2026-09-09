@@ -7,6 +7,66 @@ document.addEventListener('DOMContentLoaded', () => {
         8, 9, 10, 11, 22, 23, 25, 26, 32, 33, 34, 35, 36,
         28, 29, 30, 31, 37, 38, 39, 40, 41, 42, 43, 44, 45
     ];
+    const categoryByCommandId = {
+        1: 'Start here', 2: 'Start here', 3: 'Start here', 4: 'Start here', 5: 'Start here', 6: 'Start here', 7: 'Start here',
+        17: 'Start here', 18: 'Start here', 19: 'Start here',
+        12: 'Branches', 13: 'Branches', 14: 'Branches', 15: 'Branches', 16: 'Branches', 20: 'Branches', 21: 'Branches', 24: 'Branches', 27: 'Branches',
+        8: 'Remote work', 9: 'Remote work', 10: 'Remote work', 11: 'Remote work', 22: 'Remote work', 23: 'Remote work', 25: 'Remote work', 26: 'Remote work', 32: 'Remote work', 33: 'Remote work', 34: 'Remote work', 35: 'Remote work', 36: 'Remote work',
+        28: 'Recovery and releases', 29: 'Recovery and releases', 30: 'Recovery and releases', 31: 'Recovery and releases', 37: 'Recovery and releases', 38: 'Recovery and releases', 39: 'Recovery and releases', 40: 'Recovery and releases', 41: 'Recovery and releases', 42: 'Recovery and releases', 43: 'Recovery and releases', 44: 'Recovery and releases', 45: 'Recovery and releases'
+    };
+    const relationships = {
+        'command-01': { successor: 'git status' },
+        'command-03': { predecessor: 'git status', successor: 'git commit -m' },
+        'command-04': { predecessor: 'git add .', successor: 'git push' },
+        'command-08': { predecessor: 'git commit -m', successor: 'git fetch / git pull' },
+        'command-13': { predecessor: 'git branch', successor: 'git merge' },
+        'command-14': { predecessor: 'git branch', successor: 'git add .' },
+        'command-15': { predecessor: 'git merge' },
+        'command-16': { predecessor: 'git switch', successor: 'git branch -d' },
+        'command-20': { predecessor: 'git fetch', successor: 'git rebase --continue' },
+        'command-21': { predecessor: 'git rebase', successor: 'git push' },
+        'command-22': { successor: 'git diff ui origin/ui / git pull' },
+        'command-26': { predecessor: 'git fetch' },
+        'command-28': { predecessor: 'git log', successor: 'git cherry-pick --continue' },
+        'command-29': { predecessor: 'git cherry-pick' },
+        'command-30': { predecessor: 'git cherry-pick' },
+        'command-35': { predecessor: 'git switch -c' },
+        'command-38': { predecessor: 'git tag' },
+        'command-39': { predecessor: 'git tag' },
+        'command-42': { successor: 'git show HEAD@{1}' },
+        'command-43': { predecessor: 'git reflog' }
+    };
+    const dangerLevels = {
+        'command-15': 'Deletes a branch — confirm it has been merged',
+        'command-20': 'Rewrites history — use with care',
+        'command-21': 'Continues rewritten history — use with care',
+        'command-28': 'Creates a new commit — check the target branch',
+        'command-30': 'Discards in-progress conflict-resolution work',
+        'command-38': 'Deletes a local tag — check the release name',
+        'command-39': 'Moves a tag reference — use with care'
+    };
+    const quizData = {
+        'Start here': [
+            ['Which command puts changes into the staging area?', 'git add .', ['git status', 'git add .', 'git log']],
+            ['Which command shows unstaged changes?', 'git diff', ['git diff', 'git push', 'git branch']],
+            ['Which command saves the staged snapshot?', 'git commit -m', ['git init', 'git commit -m', 'git clone']]
+        ],
+        'Branches': [
+            ['Which command combines another branch into the current one?', 'git merge', ['git merge', 'git switch', 'git branch -d']],
+            ['Which command creates and selects a new branch?', 'git switch -c', ['git branch', 'git switch -c', 'git rebase']],
+            ['Which command replays commits onto a new base?', 'git rebase', ['git rebase', 'git log', 'git diff']]
+        ],
+        'Remote work': [
+            ['Which command downloads remote references without changing your files?', 'git fetch', ['git pull', 'git fetch', 'git push']],
+            ['Which command publishes local commits?', 'git push', ['git clone', 'git push', 'git remote -v']],
+            ['Which command fetches and integrates upstream work?', 'git pull', ['git pull', 'git branch -r', 'git status -sb']]
+        ],
+        'Recovery and releases': [
+            ['Which command cancels an in-progress cherry-pick?', 'git cherry-pick --abort', ['git cherry-pick --continue', 'git cherry-pick --abort', 'git reflog']],
+            ['Which command lists local reference movements?', 'git reflog', ['git cat-file', 'git reflog', 'git tag']],
+            ['Which command forcefully moves a tag?', 'git tag -f tagName', ['git tag', 'git tag -d tagName', 'git tag -f tagName']]
+        ]
+    };
 
     const action = (label, before, after, caption) => ({ type: 'action', label, before, after, caption });
     const inspection = (label, diagram, callouts, caption) => ({ type: 'inspection', label, diagram, callouts, caption });
@@ -74,6 +134,80 @@ document.addEventListener('DOMContentLoaded', () => {
         if (number) number.textContent = `${String(position + 1).padStart(2, '0')} / ${commandOrder.length}`;
     });
 
+    const reviewedKey = 'git-learning-reviewed-commands';
+    const reviewed = new Set(JSON.parse(localStorage.getItem(reviewedKey) || '[]'));
+    const progressLabel = document.querySelector('.learning-progress-label');
+    const progressFill = document.querySelector('.learning-progress-fill');
+    const updateProgress = () => {
+        const count = reviewed.size;
+        if (progressLabel) progressLabel.textContent = `${count} / ${commandOrder.length} commands reviewed`;
+        if (progressFill) progressFill.style.width = `${(count / commandOrder.length) * 100}%`;
+    };
+    commandCards.forEach((card) => {
+        const checkboxId = `${card.id}-reviewed`;
+        const control = document.createElement('label');
+        control.className = 'understood-toggle';
+        control.htmlFor = checkboxId;
+        control.innerHTML = `<input id="${checkboxId}" type="checkbox" ${reviewed.has(card.id) ? 'checked' : ''}><span>Understood</span>`;
+        control.querySelector('input').addEventListener('change', (event) => {
+            event.target.checked ? reviewed.add(card.id) : reviewed.delete(card.id);
+            localStorage.setItem(reviewedKey, JSON.stringify([...reviewed]));
+            updateProgress();
+        });
+        card.querySelector('.command-meta')?.append(control);
+        const relationship = relationships[card.id];
+        if (relationship) {
+            const footer = document.createElement('footer');
+            footer.className = 'command-relationships';
+            footer.textContent = [relationship.predecessor && `Comes after: ${relationship.predecessor}`, relationship.successor && `Comes before: ${relationship.successor}`].filter(Boolean).join(' · ');
+            card.append(footer);
+        }
+        if (dangerLevels[card.id]) {
+            const badge = document.createElement('span');
+            badge.className = 'danger-badge';
+            badge.title = dangerLevels[card.id];
+            badge.setAttribute('aria-label', dangerLevels[card.id]);
+            badge.innerHTML = '<span aria-hidden="true"></span> Use with care';
+            card.querySelector('.command-meta')?.append(badge);
+        }
+    });
+    updateProgress();
+
+    const addQuiz = (title, questions) => {
+        const quiz = document.createElement('section');
+        quiz.className = 'section-quiz';
+        quiz.setAttribute('aria-label', `${title} recall quiz`);
+        quiz.innerHTML = `<p class="quiz-kicker">Quick recall</p><h3>${title} quiz</h3><p>Choose an answer to check your understanding.</p>`;
+        questions.forEach(([question, answer, options], index) => {
+            const fieldset = document.createElement('fieldset');
+            fieldset.innerHTML = `<legend>${index + 1}. ${question}</legend>${options.map((option) => `<button type="button" data-answer="${option === answer}">${option}</button>`).join('')}<span class="quiz-feedback" aria-live="polite"></span>`;
+            fieldset.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => {
+                const correct = button.dataset.answer === 'true';
+                fieldset.querySelectorAll('button').forEach((choice) => choice.classList.remove('is-correct', 'is-wrong'));
+                button.classList.add(correct ? 'is-correct' : 'is-wrong');
+                fieldset.querySelector('.quiz-feedback').textContent = correct ? 'Correct — nice recall.' : `Not quite. The answer is ${answer}.`;
+            }));
+            quiz.append(fieldset);
+        });
+        return quiz;
+    };
+    Object.entries(quizData).forEach(([title, questions]) => {
+        const ids = commandOrder.filter((id) => categoryByCommandId[id] === title);
+        document.querySelector(`#command-${String(ids.at(-1)).padStart(2, '0')}`)?.after(addQuiz(title, questions));
+    });
+
+    const comparisons = [
+        ['command-21', 'Merge vs rebase', 'git merge', 'Combines histories with a merge commit.', 'Prefer for shared branches and preserved history.', 'git rebase', 'Replays your commits on a new base.', 'Prefer for cleaning up your own local branch.'],
+        ['command-26', 'Fetch vs pull', 'git fetch', 'Downloads remote updates without changing files.', 'Prefer when you want to inspect first.', 'git pull', 'Fetches, then integrates into your branch.', 'Prefer when you are ready to update locally.'],
+        ['command-30', 'Cherry-pick vs merge', 'git cherry-pick', 'Copies one selected commit onto this branch.', 'Prefer for a targeted fix.', 'git merge', 'Brings in a branch’s shared history.', 'Prefer for the complete branch of work.']
+    ];
+    comparisons.forEach(([afterId, title, leftName, leftDoes, leftPrefer, rightName, rightDoes, rightPrefer]) => {
+        const comparison = document.createElement('section');
+        comparison.className = 'command-comparison';
+        comparison.innerHTML = `<p class="quiz-kicker">Commonly confused</p><h3>${title}</h3><div><article><h4>${leftName}</h4><p>${leftDoes}</p><strong>Prefer it:</strong><p>${leftPrefer}</p></article><article><h4>${rightName}</h4><p>${rightDoes}</p><strong>Prefer it:</strong><p>${rightPrefer}</p></article></div>`;
+        document.getElementById(afterId)?.after(comparison);
+    });
+
     commandCards.forEach((card) => {
         const scenario = visualScenarios[card.dataset.scenario];
         if (!scenario) return;
@@ -84,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
             : '<button class="visualizer-run" type="button">Highlight details</button>';
         const content = scenario.type === 'action'
             ? `<div class="visualizer-stage"><div class="visual-state before-state">${scenario.before}</div><span class="visualizer-status">Before</span></div>`
-            : `<div class="visualizer-stage"><div class="visual-state">${scenario.diagram}</div><span class="visualizer-status">Read-only</span></div><div class="visual-callouts">${scenario.callouts.map((callout) => `<span class="visual-callout">${callout}</span>`).join('')}</div>`;
+            : `<div class="visualizer-stage"><div class="visual-state">${scenario.diagram}</div><span class="visualizer-status">Read-only</span></div><div class="visual-callouts"><div class="visual-callouts-inner">${scenario.callouts.map((callout) => `<span class="visual-callout">${callout}</span>`).join('')}</div></div>`;
         visualizer.innerHTML = `<div class="visualizer-header"><div><span class="visualizer-kicker">${scenario.type === 'action' ? 'Repository operation' : 'Repository inspection'}</span><strong>${scenario.label}</strong></div>${controls}</div>${content}<p class="visualizer-caption">${scenario.caption}</p>`;
         const runButton = visualizer.querySelector('.visualizer-run');
         if (scenario.type === 'action') {
@@ -103,6 +237,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
         card.append(visualizer);
+        // Keep the learning relationship as the card's final, scan-friendly footer.
+        const relationshipFooter = card.querySelector('.command-relationships');
+        if (relationshipFooter) card.append(relationshipFooter);
     });
 
     commandCards.forEach((card) => {
@@ -117,7 +254,7 @@ document.addEventListener('DOMContentLoaded', () => {
         copyButton.setAttribute('aria-label', `Copy the ${card.querySelector('h3')?.textContent || 'Git'} example`);
         let resetTimer;
         copyButton.addEventListener('click', async () => {
-            const text = pre.textContent.trim();
+            const text = (pre.dataset.terminalText || pre.textContent).trim();
             let copied = false;
             try {
                 if (navigator.clipboard?.writeText) {
@@ -149,14 +286,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (navigation) {
         const links = [...navigation.querySelectorAll('a')];
+        const navigationTools = navigation.querySelector('.journey-nav-tools');
         const linksByCommandId = new Map(links.map((link) => [link.getAttribute('href'), link]));
-        const groups = [
-            { title: 'Start here', commandIds: [1, 2, 3, 4, 5, 6, 7, 17, 18, 19] },
-            { title: 'Branches', commandIds: [12, 13, 14, 15, 16, 20, 21, 24, 27] },
-            { title: 'Remote work', commandIds: [8, 9, 10, 11, 22, 23, 25, 26, 32, 33, 34, 35, 36] },
-            { title: 'Recovery and releases', commandIds: [28, 29, 30, 31, 37, 38, 39, 40, 41, 42, 43, 44, 45] }
-        ];
+        const groupTitles = ['Start here', 'Branches', 'Remote work', 'Recovery and releases'];
+        const groups = groupTitles.map((title) => ({
+            title,
+            commandIds: commandOrder.filter((commandId) => categoryByCommandId[commandId] === title)
+        }));
         navigation.replaceChildren();
+        if (navigationTools) navigation.append(navigationTools);
         const groupedLinks = new Set();
         groups.forEach((group, groupIndex) => {
             const details = document.createElement('details');
@@ -175,10 +313,27 @@ document.addEventListener('DOMContentLoaded', () => {
         links.filter((link) => !groupedLinks.has(link)).forEach((link) => navigation.querySelector('details:last-child')?.append(link));
         navigation.querySelectorAll('details').forEach((details) => {
             details.addEventListener('toggle', () => {
+                if (navigation.classList.contains('is-filtering')) return;
                 if (!details.open) return;
                 navigation.querySelectorAll('details').forEach((other) => {
                     if (other !== details) other.open = false;
                 });
+            });
+        });
+        const searchInput = navigation.querySelector('.command-search');
+        searchInput?.addEventListener('input', () => {
+            const query = searchInput.value.trim().toLowerCase();
+            navigation.classList.toggle('is-filtering', Boolean(query));
+            navigation.querySelectorAll('details').forEach((details) => {
+                let hasMatch = false;
+                details.querySelectorAll('a').forEach((link) => {
+                    const matches = !query || link.textContent.toLowerCase().includes(query);
+                    link.hidden = !matches;
+                    hasMatch ||= matches;
+                    document.querySelector(link.getAttribute('href'))?.classList.toggle('search-match', Boolean(query) && matches);
+                });
+                details.hidden = Boolean(query) && !hasMatch;
+                details.open = query ? hasMatch : details.querySelector('summary')?.textContent === 'Start here';
             });
         });
         const referenceGroup = navigation.querySelector('details:last-child');
@@ -201,4 +356,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { rootMargin: '-20% 0px -70% 0px' });
     observedSections.forEach((section) => observer.observe(section));
+
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const terminalObserver = new IntersectionObserver((entries, currentObserver) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const pre = entry.target;
+                const lines = (pre.dataset.terminalText || pre.textContent).replace(/\r/g, '').split('\n');
+                pre.textContent = '';
+                let lineIndex = 0;
+                const revealLine = () => {
+                    if (lineIndex >= lines.length) return;
+                    const line = lines[lineIndex++];
+                    if (!line.trimStart().startsWith('$')) {
+                        pre.textContent += `${line}${lineIndex < lines.length ? '\n' : ''}`;
+                        window.setTimeout(revealLine, 110);
+                        return;
+                    }
+                    let characterIndex = 0;
+                    const typeCharacter = () => {
+                        pre.textContent += line[characterIndex++] || '';
+                        if (characterIndex < line.length) window.setTimeout(typeCharacter, 18);
+                        else { if (lineIndex < lines.length) pre.textContent += '\n'; window.setTimeout(revealLine, 130); }
+                    };
+                    typeCharacter();
+                };
+                revealLine();
+                currentObserver.unobserve(pre);
+            });
+        }, { rootMargin: '0px 0px -12% 0px', threshold: 0.2 });
+        document.querySelectorAll('.terminal-window pre').forEach((pre) => {
+            pre.dataset.terminalText = pre.textContent;
+            terminalObserver.observe(pre);
+        });
+    }
 });
