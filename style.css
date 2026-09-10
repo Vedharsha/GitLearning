@@ -94,6 +94,29 @@ body {
 
 .git-journey { border-top-color: var(--line); }
 .journey-header h2 { color: var(--cherry-800); font-family: var(--font-display); }
+.collaboration-section { margin-top: 4rem; padding-top: 2.5rem; border-top: 1px solid var(--line); }
+.collaboration-section .section-heading { margin-bottom: 1.5rem; }
+.collaboration-section h2 { margin: 0; color: var(--cherry-800); font-family: var(--font-display); }
+.collaboration-content { display: grid; gap: 1.5rem; }
+.collaboration-content .command-card {
+    display: block;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+.collaboration-content .command-meta {
+    margin: 0 0 1rem;
+    padding: 0;
+    border: 0;
+}
+.collaboration-content .command-meta h3 { color: var(--cherry-800); }
+.collaboration-content .command-info > div {
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
 .copy-button { margin-left: auto; padding: 0.35rem 0.6rem; border: 1px solid rgba(246, 228, 233, 0.3); border-radius: 5px; background: transparent; color: var(--blossom-100); cursor: pointer; font: 0.72rem monospace; }
 .copy-button:hover, .copy-button:focus-visible { background: var(--cherry-500); color: white; }
 code { color: var(--cherry-300); font-family: 'Courier New', monospace; }
@@ -327,6 +350,19 @@ li {
     align-content: start;
 }
 
+#command-63 .command-info,
+#command-64 .command-info {
+    grid-template-columns: 1fr;
+}
+
+#command-63 .command-info > div:first-child {
+    order: 2;
+}
+
+#command-63 .command-info > div:last-child {
+    order: 1;
+}
+
 .command-info div {
     background: rgba(255, 255, 255, 0.025);
     border: 1px solid var(--line);
@@ -345,6 +381,167 @@ li {
     margin: 0;
     font-style: normal;
     color: var(--ink);
+}
+
+.command-info .workflow-diagram,
+.command-info .workflow-diagram div {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.command-info .workflow-diagram {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    width: 100%;
+    margin-top: 1rem;
+    padding: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--blossom-50), #fff);
+    box-shadow: inset 0 0 24px rgba(184, 59, 94, 0.05);
+    text-align: center;
+}
+
+.command-info .workflow-diagram .workflow-node {
+    min-width: 120px;
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--cherry-400);
+    border-radius: 9px;
+    background: #fff;
+    color: var(--cherry-800);
+    box-shadow: 0 6px 14px -12px rgba(58, 10, 28, 0.7);
+    font: 0.78rem/1.25 var(--font-mono);
+    font-weight: 700;
+}
+
+.workflow-node small,
+.workflow-decision small {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--ink-soft);
+    font: 0.68rem/1.3 var(--font-mono);
+    font-weight: 400;
+}
+
+.command-info .workflow-diagram .workflow-source,
+.command-info .workflow-diagram .workflow-shared { border-color: var(--stem-600); background: var(--stem-100); color: #274531; }
+.command-info .workflow-diagram .workflow-branch { background: var(--blossom-100); }
+.command-info .workflow-diagram .workflow-focus { background: var(--cherry-700); border-color: var(--cherry-700); color: #fff; }
+.command-info .workflow-diagram .workflow-approved { border-color: var(--stem-600); background: var(--stem-100); color: #274531; }
+.command-info .workflow-diagram .workflow-revision { border-color: #d87520; background: #fff0df; color: #8c4212; }
+.command-info .workflow-diagram .workflow-closed { border-color: #8c7077; background: #f4eff1; color: #69565d; }
+.workflow-arrow { color: var(--cherry-500); font: 1rem/1 var(--font-mono); font-weight: 800; }
+
+.command-info .workflow-diagram .collaborator-lanes,
+.command-info .workflow-diagram .workflow-decision {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+    width: min(100%, 560px);
+}
+
+.command-info .collaboration-diagram .collaborator-lanes {
+    grid-template-columns: repeat(3, minmax(max-content, 1fr));
+    overflow-x: auto;
+    padding: 0.15rem 0.2rem;
+}
+
+.command-info .collaboration-diagram .collaborator-lane {
+    min-width: max-content;
+}
+
+.command-info .collaboration-diagram .collaborator-lane .workflow-node {
+    white-space: nowrap;
+}
+
+.command-info .workflow-diagram .collaborator-lane,
+.command-info .workflow-diagram .workflow-decision > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    min-width: 0;
+}
+
+.command-info .collaboration-diagram .workflow-decision { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 380px; }
+
+.command-info .workflow-diagram .pull-request-outcomes {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+}
+
+.command-info .workflow-diagram .pull-request-outcomes > .workflow-outcome-lane {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: min(100%, 220px);
+    min-width: 0;
+    gap: 0.35rem;
+}
+
+.command-info .workflow-diagram .workflow-loop-connector {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    width: min(100%, 240px);
+    height: 13rem;
+    overflow: visible;
+    pointer-events: none;
+    transform: translateX(-50%);
+}
+
+.command-info .workflow-diagram .workflow-loop-connector path {
+    fill: none;
+    stroke: var(--cherry-500);
+    stroke-width: 2.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.command-info .workflow-diagram .workflow-loop-connector marker path {
+    fill: var(--cherry-500);
+    stroke: none;
+}
+
+.command-info .workflow-diagram .workflow-revision-lane {
+    padding-bottom: 2.7rem;
+}
+
+.command-info .workflow-diagram .workflow-outcome-arrow,
+.command-info .workflow-diagram .workflow-loop-label {
+    color: var(--cherry-500);
+    font: 1rem/1 var(--font-mono);
+    font-weight: 800;
+}
+
+.command-info .workflow-diagram .workflow-loop-label {
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+}
+
+@media (max-width: 560px) {
+    .command-info .workflow-diagram { padding: 0.8rem; }
+    .command-info .workflow-diagram .collaborator-lanes,
+    .command-info .workflow-diagram .workflow-decision,
+    .command-info .collaboration-diagram .workflow-decision { grid-template-columns: 1fr; width: 100%; }
+    .command-info .workflow-diagram .workflow-node { width: 100%; min-width: 0; }
+    .command-info .collaboration-diagram .collaborator-lanes { grid-template-columns: repeat(3, max-content); width: 100%; }
+    .command-info .collaboration-diagram .collaborator-lane .workflow-node { width: max-content; min-width: max-content; }
+    .command-info .pull-request-outcomes .workflow-node { width: 100%; min-width: 0; overflow-wrap: anywhere; white-space: normal; }
 }
 
 .terminal-window {
@@ -395,6 +592,13 @@ li {
     font-size: 0.94rem;
     line-height: 1.7;
     color: var(--code-ink);
+}
+
+.command-info pre {
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
 }
 
 .history-box {

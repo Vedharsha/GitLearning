@@ -1,18 +1,33 @@
 document.addEventListener('DOMContentLoaded', () => {
     const commandCards = [...document.querySelectorAll('.command-card')];
     const navigation = document.querySelector('.journey-nav');
-    const commandOrder = [
-        1, 2, 3, 4, 5, 6, 7, 17, 18, 19,
-        12, 13, 14, 15, 16, 20, 21, 24, 27,
-        8, 9, 10, 11, 22, 23, 25, 26, 32, 33, 34, 35, 36,
-        28, 29, 30, 31, 37, 38, 39, 40, 41, 42, 43, 44, 45
-    ];
+    const collaborationContent = document.querySelector('.collaboration-content');
+    ['command-63', 'command-64', 'command-65'].forEach((cardId) => {
+        const card = document.getElementById(cardId);
+        if (card && collaborationContent) collaborationContent.append(card);
+    });
+    const cardIds = commandCards
+        .map((card) => Number(card.id.replace('command-', '')))
+        .filter(Number.isFinite);
+    // The sidebar is the navigable learning sequence; bottom collaboration notes are not slides.
+    const commandOrder = [...(navigation?.querySelectorAll('a[href^="#command-"]') || [])]
+        .map((link) => Number(link.getAttribute('href').replace('#command-', '')))
+        .filter(Number.isFinite);
     const categoryByCommandId = {
-        1: 'Start here', 2: 'Start here', 3: 'Start here', 4: 'Start here', 5: 'Start here', 6: 'Start here', 7: 'Start here',
-        17: 'Start here', 18: 'Start here', 19: 'Start here',
-        12: 'Branches', 13: 'Branches', 14: 'Branches', 15: 'Branches', 16: 'Branches', 20: 'Branches', 21: 'Branches', 24: 'Branches', 27: 'Branches',
-        8: 'Remote work', 9: 'Remote work', 10: 'Remote work', 11: 'Remote work', 22: 'Remote work', 23: 'Remote work', 25: 'Remote work', 26: 'Remote work', 32: 'Remote work', 33: 'Remote work', 34: 'Remote work', 35: 'Remote work', 36: 'Remote work',
-        28: 'Recovery and releases', 29: 'Recovery and releases', 30: 'Recovery and releases', 31: 'Recovery and releases', 37: 'Recovery and releases', 38: 'Recovery and releases', 39: 'Recovery and releases', 40: 'Recovery and releases', 41: 'Recovery and releases', 42: 'Recovery and releases', 43: 'Recovery and releases', 44: 'Recovery and releases', 45: 'Recovery and releases'
+        1: 'Foundations', 2: 'Foundations', 3: 'Foundations', 4: 'Foundations', 5: 'Foundations', 6: 'Foundations', 7: 'Foundations',
+        8: 'Remote basics', 9: 'Remote basics', 10: 'Remote basics', 11: 'Remote basics',
+        12: 'Branching', 13: 'Branching', 14: 'Branching', 15: 'Branching', 16: 'Branching',
+        17: 'Inspecting changes', 18: 'Inspecting changes', 19: 'Inspecting changes',
+        20: 'Rebase', 21: 'Rebase',
+        22: 'Remote tracking and history', 23: 'Remote tracking and history', 24: 'Remote tracking and history', 25: 'Remote tracking and history', 26: 'Remote tracking and history', 27: 'Remote tracking and history',
+        28: 'Cherry-pick', 29: 'Cherry-pick', 30: 'Cherry-pick',
+        31: 'Remote inspection', 32: 'Remote inspection', 33: 'Remote inspection', 34: 'Remote inspection', 35: 'Remote inspection', 36: 'Remote inspection',
+        37: 'Tags and Git objects', 38: 'Tags and Git objects', 39: 'Tags and Git objects', 40: 'Tags and Git objects', 41: 'Tags and Git objects',
+        42: 'Reflog and recovery', 43: 'Reflog and recovery', 44: 'Reflog and recovery', 45: 'Reflog and recovery',
+        46: 'Ignoring and restoring', 47: 'Ignoring and restoring', 48: 'Ignoring and restoring',
+        49: 'Undoing commits', 50: 'Undoing commits', 51: 'Undoing commits', 52: 'Undoing commits',
+        53: 'Git stash', 54: 'Git stash', 55: 'Git stash', 56: 'Git stash', 57: 'Git stash', 58: 'Git stash', 59: 'Git stash', 60: 'Git stash',
+        61: 'Tag concepts and GitHub', 62: 'Detached HEAD', 63: 'Collaboration', 64: 'Collaboration', 65: 'Collaboration'
     };
     const relationships = {
         'command-01': { successor: 'git status' },
@@ -36,6 +51,41 @@ document.addEventListener('DOMContentLoaded', () => {
         'command-42': { successor: 'git show HEAD@{1}' },
         'command-43': { predecessor: 'git reflog' }
     };
+    // New command topics use the same terminal markup, typing animation, and copy control
+    // as the original cards. Concept-only cards remain explanation-led.
+    const interactiveExamples = {
+        'command-46': ['$ cat .gitignore', 'node_modules/\n.env\n*.log\ndist/'],
+        'command-47': ['$ git restore index.html', '# No output: unstaged edits to index.html were discarded.'],
+        'command-48': ['$ git restore --staged index.html', '# No output: the changes remain in the working tree.'],
+        'command-49': ['$ git revert a4fda45', '[main b91d20] Revert "Add navigation"'],
+        'command-50': ['$ git reset HEAD~1', 'Unstaged changes after reset:\nM  index.html'],
+        'command-51': ['$ git reset --soft HEAD~1', '# No output: changes from the undone commit remain staged.'],
+        'command-52': ['$ git reset --hard HEAD~1', 'HEAD is now at 4b91f20 Update styles'],
+        'command-53': ['$ git stash', 'Saved working directory and index state WIP on feature-a'],
+        'command-54': ['$ git stash list', 'stash@{0}: WIP on feature-a: Add login form'],
+        'command-55': ['$ git stash pop', 'On branch feature-a\nDropped refs/stash@{0}'],
+        'command-56': ['$ git stash apply stash@{0}', '# Stash applied successfully; stash@{0} remains in the list.'],
+        'command-57': ['$ git stash drop stash@{0}', 'Dropped stash@{0}'],
+        'command-58': ['$ git stash clear', '# No output: all stash entries were removed.'],
+        'command-59': ['$ git stash -u', 'Saved tracked changes and untracked files.'],
+        'command-60': ['$ git stash -a', 'Saved tracked, untracked, and ignored files.'],
+        'command-61': ['$ git tag v1.0\n$ git tag -a v1.1 -m "Version 1.1"', 'v1.0 is lightweight\nv1.1 is annotated'],
+        'command-62': ['$ git switch --detach a4fda45\n$ git commit -m "Experiment"\n$ git switch -c rescue-branch', 'HEAD is now detached at a4fda45\nSwitched to a new branch \'rescue-branch\''],
+        'command-65': ['$ git switch -c feature/login\n$ git add .\n$ git commit -m "Add login feature"\n$ git push -u origin feature/login', 'branch \'feature/login\' set up to track \'origin/feature/login\'.']
+    };
+    Object.entries(interactiveExamples).forEach(([id, [input, output]]) => {
+        const card = document.getElementById(id);
+        if (!card || card.querySelector('.terminal-window')) return;
+        const terminal = document.createElement('div');
+        terminal.className = 'terminal-window';
+        terminal.setAttribute('role', 'img');
+        terminal.setAttribute('aria-label', `Git Bash example for ${card.querySelector('h3')?.textContent || 'Git topic'}`);
+        terminal.innerHTML = '<div class="terminal-header"><span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span><span class="terminal-title">Git Bash</span></div>';
+        const pre = document.createElement('pre');
+        pre.textContent = `${input}\n${output}`;
+        terminal.append(pre);
+        card.append(terminal);
+    });
     const dangerLevels = {
         'command-15': 'Deletes a branch — confirm it has been merged',
         'command-20': 'Rewrites history — use with care',
@@ -129,10 +179,11 @@ document.addEventListener('DOMContentLoaded', () => {
     commandOrder.forEach((commandId, position) => {
         const card = document.querySelector(`#command-${String(commandId).padStart(2, '0')}`);
         if (!card) return;
-        document.querySelector('.command-group')?.append(card);
         const number = card.querySelector('.command-number');
         if (number) number.textContent = `${String(position + 1).padStart(2, '0')} / ${commandOrder.length}`;
     });
+
+    const collaborationCards = new Set(['command-63', 'command-64', 'command-65']);
 
     const reviewedKey = 'git-learning-reviewed-commands';
     const reviewed = new Set(JSON.parse(localStorage.getItem(reviewedKey) || '[]'));
@@ -144,17 +195,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (progressFill) progressFill.style.width = `${(count / commandOrder.length) * 100}%`;
     };
     commandCards.forEach((card) => {
+        const isCollaborationCard = collaborationCards.has(card.id);
         const checkboxId = `${card.id}-reviewed`;
-        const control = document.createElement('label');
-        control.className = 'understood-toggle';
-        control.htmlFor = checkboxId;
-        control.innerHTML = `<input id="${checkboxId}" type="checkbox" ${reviewed.has(card.id) ? 'checked' : ''}><span>Understood</span>`;
-        control.querySelector('input').addEventListener('change', (event) => {
-            event.target.checked ? reviewed.add(card.id) : reviewed.delete(card.id);
-            localStorage.setItem(reviewedKey, JSON.stringify([...reviewed]));
-            updateProgress();
-        });
-        card.querySelector('.command-meta')?.append(control);
+        if (!isCollaborationCard) {
+            const control = document.createElement('label');
+            control.className = 'understood-toggle';
+            control.htmlFor = checkboxId;
+            control.innerHTML = `<input id="${checkboxId}" type="checkbox" ${reviewed.has(card.id) ? 'checked' : ''}><span>Understood</span>`;
+            control.querySelector('input').addEventListener('change', (event) => {
+                event.target.checked ? reviewed.add(card.id) : reviewed.delete(card.id);
+                localStorage.setItem(reviewedKey, JSON.stringify([...reviewed]));
+                updateProgress();
+            });
+            card.querySelector('.command-meta')?.append(control);
+        } else {
+            card.querySelector('.command-number')?.remove();
+        }
         const relationship = relationships[card.id];
         if (relationship) {
             const footer = document.createElement('footer');
@@ -288,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const links = [...navigation.querySelectorAll('a')];
         const navigationTools = navigation.querySelector('.journey-nav-tools');
         const linksByCommandId = new Map(links.map((link) => [link.getAttribute('href'), link]));
-        const groupTitles = ['Start here', 'Branches', 'Remote work', 'Recovery and releases'];
+        const groupTitles = ['Foundations', 'Remote basics', 'Branching', 'Inspecting changes', 'Rebase', 'Remote tracking and history', 'Cherry-pick', 'Remote inspection', 'Tags and Git objects', 'Reflog and recovery', 'Ignoring and restoring', 'Undoing commits', 'Git stash', 'Tag concepts and GitHub', 'Detached HEAD'];
         const groups = groupTitles.map((title) => ({
             title,
             commandIds: commandOrder.filter((commandId) => categoryByCommandId[commandId] === title)
@@ -333,15 +389,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     document.querySelector(link.getAttribute('href'))?.classList.toggle('search-match', Boolean(query) && matches);
                 });
                 details.hidden = Boolean(query) && !hasMatch;
-                details.open = query ? hasMatch : details.querySelector('summary')?.textContent === 'Start here';
+                details.open = query ? hasMatch : details.querySelector('summary')?.textContent === 'Foundations';
             });
         });
-        const referenceGroup = navigation.querySelector('details:last-child');
+        const referenceGroup = document.createElement('details');
+        const referenceSummary = document.createElement('summary');
+        referenceSummary.textContent = 'Reference notes';
+        referenceGroup.append(referenceSummary);
+        navigation.append(referenceGroup);
         ['tags', 'reflog'].forEach((sectionId) => {
             const link = document.createElement('a');
             link.href = `#${sectionId}`;
             link.textContent = sectionId;
             referenceGroup.append(link);
+        });
+        referenceGroup.addEventListener('toggle', () => {
+            if (navigation.classList.contains('is-filtering') || !referenceGroup.open) return;
+            navigation.querySelectorAll('details').forEach((other) => {
+                if (other !== referenceGroup) other.open = false;
+            });
         });
     }
 
